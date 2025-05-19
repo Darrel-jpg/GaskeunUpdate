@@ -54,5 +54,19 @@ namespace Gaskeun_.Models
                 }
             }
         }
+        public decimal GetTotalPenghasilan()
+        {
+            using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
+            {
+                string query = @"SELECT SUM(harga) FROM public.transaksi";
+                conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    decimal total = Convert.ToDecimal(cmd.ExecuteScalar());
+                    return total;
+                }
+            }
+        }
     }
 }

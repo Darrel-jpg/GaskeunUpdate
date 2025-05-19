@@ -25,6 +25,7 @@ namespace Gaskeun_.View
             lbJmlMobil.Text = dashboardControl.GetJumlahMobil().ToString();
             lbJmlMotor.Text = dashboardControl.GetJumlahMotor().ToString();
             lbJmlUser.Text = dashboardControl.GetJumlahPelanggan().ToString();
+            lbIncome.Text = dashboardControl.GetTotalPenghasilan().ToString("C", System.Globalization.CultureInfo.GetCultureInfo("id-ID"));
         }
     }
 }

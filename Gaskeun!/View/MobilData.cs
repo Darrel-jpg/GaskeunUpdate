@@ -14,7 +14,7 @@ namespace Gaskeun_.View
 {
     public partial class MobilData : UserControl
     {
-        Models.MobilContext mobilContext;
+        MobilContext mobilContext;
         private string platLama;
         public MobilData()
         {
@@ -24,7 +24,7 @@ namespace Gaskeun_.View
             dataGridView1.DataSource = mobilControl.ReadMobil();
         }
 
-        public Models.Mobil GetMobil()
+        public Mobil GetMobil()
         {
             Mobil newMobil = new Mobil();
 

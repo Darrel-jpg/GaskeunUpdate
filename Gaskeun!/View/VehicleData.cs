@@ -93,17 +93,16 @@ namespace Gaskeun_.View
             MotorControl motorControl = new MotorControl();
             if (motorControl.UpdateMotor(newMotor, platLama))
             {
-                MessageBox.Show("Data motor berhasil diperbarui!");
+                MessageBox.Show("Data motor berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = motorControl.GetAllMotors();
                 platLama = null;
-
                 ClearForm();
             }
             else
             {
-                MessageBox.Show("Gagal memperbarui data motor!");
+                MessageBox.Show("Gagal memperbarui data motor!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -113,14 +112,14 @@ namespace Gaskeun_.View
             MotorControl motorControl = new MotorControl();
             if (motorControl.DeleteMotor(motor))
             {
-                MessageBox.Show("Data motor berhasil dihapus!");
+                MessageBox.Show("Data motor berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = motorControl.GetAllMotors();
             }
             else
             {
-                MessageBox.Show("Gagal menghapus data motor!");
+                MessageBox.Show("Gagal menghapus data motor!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

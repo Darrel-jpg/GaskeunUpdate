@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gaskeun_.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,11 @@ namespace Gaskeun_.View
 {
     public partial class Register : Form
     {
-        Models.PelangganContext pelangganContext;
+        PelangganControl pelangganControl;
         public Register()
         {
             InitializeComponent();
-            pelangganContext = new Models.PelangganContext();
+            pelangganControl = new PelangganControl();
 
             tbPassword.PasswordChar = '*';
             tbConfirm.PasswordChar = '*';
@@ -114,55 +115,47 @@ namespace Gaskeun_.View
             newPelanggan.Email = tbEmail.Text.Trim();
             newPelanggan.NoHp = tbNoHp.Text.Trim();
             newPelanggan.Password = tbPassword.Text.Trim();
+            newPelanggan.Status = "Aktif";
 
             return newPelanggan;
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbUsername.Text.Trim()))
-            {
-                MessageBox.Show("Username tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbUsername.Text = "";
-                tbUsername.Focus();
-                return;
-            }
+            (string pesan, string field) = pelangganControl.ValidasiInput(tbUsername.Text.Trim(), tbEmail.Text.Trim(), tbNoHp.Text.Trim(), tbPassword.Text.Trim(), tbConfirm.Text.Trim());
 
-            if (!tbEmail.Text.EndsWith("@gmail.com"))
+            if (!string.IsNullOrEmpty(pesan))
             {
-                MessageBox.Show("Email harus menggunakan domain @gmail.com", "Validasi Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbEmail.Focus();
-                return;
-            }
-
-            if (!tbNoHp.Text.All(char.IsDigit))
-            {
-                MessageBox.Show("Nomor HP hanya boleh berisi angka", "Validasi Nomor HP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbNoHp.Focus();
-                return;
-            }
-
-            if (string.IsNullOrEmpty(tbPassword.Text.Trim()))
-            {
-                MessageBox.Show("Password tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbPassword.Text = "";
-                tbPassword.Focus();
-                return;
-            }
-
-            if (tbConfirm.Text != tbPassword.Text)
-            {
-                MessageBox.Show("Konfirmasi Password tidak sama", "Validasi Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbConfirm.Text = "";
-                tbConfirm.Focus();
+                MessageBox.Show(pesan, "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                switch (field)
+                {
+                    case "username":
+                        tbUsername.Text = "";
+                        tbUsername.Focus();
+                        break;
+                    case "email":
+                        tbEmail.Focus();
+                        break;
+                    case "nohp":
+                        tbNoHp.Focus();
+                        break;
+                    case "pw":
+                        tbPassword.Text = "";
+                        tbPassword.Focus();
+                        break;
+                    case "confirm":
+                        tbConfirm.Text = "";
+                        tbConfirm.Focus();
+                        break;
+                }
                 return;
             }
 
             Models.Pelanggan newPelanggan = GetPelanggan();
-            bool isSuccess = pelangganContext.Insert(newPelanggan);
+            bool isSuccess = pelangganControl.TambahPelanggan(newPelanggan);
 
             if (isSuccess)
             {
-                MessageBox.Show("Pendaftaran berhasil! Silahkan Login", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Registrasi berhasil! Silahkan Login", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Form1 login = new Form1();
                 this.Hide();
                 login.ShowDialog();
@@ -170,7 +163,7 @@ namespace Gaskeun_.View
             }
             else
             {
-                MessageBox.Show("Pendaftaran gagal, coba lagi", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Registrasi gagal, coba lagi", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

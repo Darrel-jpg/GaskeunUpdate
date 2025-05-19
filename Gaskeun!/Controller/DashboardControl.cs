@@ -22,5 +22,9 @@ namespace Gaskeun_.Controller
         {
             return dataDashboard.GetJumlahPelanggan();
         }
+        public decimal GetTotalPenghasilan()
+        {
+            return dataDashboard.GetTotalPenghasilan();
+        }
     }
 }

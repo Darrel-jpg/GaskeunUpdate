@@ -13,5 +13,6 @@ namespace Gaskeun_.Models
         public string NoHp { get; set; }
         public string Password { get; set; }
         public string Alamat { get; set; }
+        public string Status { get; set; }
     }
 }

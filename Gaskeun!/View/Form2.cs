@@ -16,5 +16,33 @@ namespace Gaskeun_.View
         {
             InitializeComponent();
         }
+
+        private bool vehicleCollapse;
+        private void bikeTimer_Tick(object sender, EventArgs e)
+        {
+            if (vehicleCollapse)
+            {
+                vehicleContainer.Height += 10;
+                if (vehicleContainer.Height == vehicleContainer.MaximumSize.Height)
+                {
+                    vehicleCollapse = false;
+                    VehicleTimer.Stop();
+                }
+            }
+            else
+            {
+                vehicleContainer.Height -= 10;
+                if (vehicleContainer.Height == vehicleContainer.MinimumSize.Height)
+                {
+                    vehicleCollapse = true;
+                    VehicleTimer.Stop();
+                }
+            }
+        }
+
+        private void btnVehicle_Click(object sender, EventArgs e)
+        {
+            VehicleTimer.Start();
+        }
     }
 }

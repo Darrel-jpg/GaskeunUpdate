@@ -50,31 +50,51 @@ namespace Gaskeun_.View
         {
             VehicleTimer.Start();
         }
-
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = true;
-            vehicleData1.Visible = false;
-            mobilData1.Visible = false;
+            vehicleData3.Visible = false;
+            mobilData3.Visible = false;
+            usersData3.Visible = false;
+            transaksiPelanggan2.Visible = false;
         }
         private void btnMotor_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = false;
-            vehicleData1.Visible = true;
-            mobilData1.Visible = false;
+            vehicleData3.Visible = true;
+            mobilData3.Visible = false;
+            usersData3.Visible = false;
+            transaksiPelanggan2.Visible = false;
         }
-
         private void btnMobil_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = false;
-            vehicleData1.Visible = false;
-            mobilData1.Visible = true;
+            vehicleData3.Visible = false;
+            mobilData3.Visible = true;
+            usersData3.Visible = false;
+            transaksiPelanggan2.Visible = false;
         }
-
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            dashboard1.Visible = false;
+            vehicleData3.Visible = false;
+            mobilData3.Visible = false;
+            usersData3.Visible = true;
+            transaksiPelanggan2.Visible = false;
+        }
+        private void btnTransaction_Click(object sender, EventArgs e)
+        {
+            dashboard1.Visible = false;
+            vehicleData3.Visible = false;
+            mobilData3.Visible = false;
+            usersData3.Visible = false;
+            transaksiPelanggan2.Visible = true;
+        }
         private void AdminMainForm_Load(object sender, EventArgs e)
         {
             //this.WindowState = FormWindowState.Maximized;
             //this.FormBorderStyle = FormBorderStyle.None;
         }
+
     }
 }
