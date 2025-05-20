@@ -402,7 +402,6 @@
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.Navy;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
@@ -410,10 +409,10 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Plat, NamaMobil, Merk, Tahun, Warna, HargaHari, HargaMinggu, HargaBulan, Status });
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -421,6 +420,7 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(34, 65);
             dataGridView1.Name = "dataGridView1";
@@ -468,21 +468,21 @@
             // HargaHari
             // 
             HargaHari.DataPropertyName = "HargaPerHari";
-            HargaHari.HeaderText = "Harga per Hari";
+            HargaHari.HeaderText = "Harga/Hari";
             HargaHari.MinimumWidth = 6;
             HargaHari.Name = "HargaHari";
             // 
             // HargaMinggu
             // 
             HargaMinggu.DataPropertyName = "HargaPerMinggu";
-            HargaMinggu.HeaderText = "Harga per Minggu";
+            HargaMinggu.HeaderText = "Harga/Minggu";
             HargaMinggu.MinimumWidth = 6;
             HargaMinggu.Name = "HargaMinggu";
             // 
             // HargaBulan
             // 
             HargaBulan.DataPropertyName = "HargaPerBulan";
-            HargaBulan.HeaderText = "Harga per Bulan";
+            HargaBulan.HeaderText = "Harga/Bulan";
             HargaBulan.MinimumWidth = 6;
             HargaBulan.Name = "HargaBulan";
             // 
@@ -542,6 +542,9 @@
         private Panel panel2;
         private Label label1;
         private DataGridView dataGridView1;
+        private Panel panel3;
+        private Panel panel5;
+        private Panel panel4;
         private DataGridViewTextBoxColumn Plat;
         private DataGridViewTextBoxColumn NamaMobil;
         private DataGridViewTextBoxColumn Merk;
@@ -551,8 +554,5 @@
         private DataGridViewTextBoxColumn HargaMinggu;
         private DataGridViewTextBoxColumn HargaBulan;
         private DataGridViewTextBoxColumn Status;
-        private Panel panel3;
-        private Panel panel5;
-        private Panel panel4;
     }
 }

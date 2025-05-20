@@ -18,6 +18,9 @@ namespace Gaskeun_.View
         public Dashboard()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = dashboardControl.ReadPelangganHariIni();
+
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -27,5 +30,6 @@ namespace Gaskeun_.View
             lbJmlUser.Text = dashboardControl.GetJumlahPelanggan().ToString();
             lbIncome.Text = dashboardControl.GetTotalPenghasilan().ToString("C", System.Globalization.CultureInfo.GetCultureInfo("id-ID"));
         }
+
     }
 }

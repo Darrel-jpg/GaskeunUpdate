@@ -9,7 +9,7 @@ namespace Gaskeun_.Controller
 {
     public class DashboardControl
     {
-        DataDashboard dataDashboard = new DataDashboard();
+        DashboardContext dataDashboard = new DashboardContext();
         public int GetJumlahMobil()
         {
             return dataDashboard.GetJumlahMobil();
@@ -25,6 +25,11 @@ namespace Gaskeun_.Controller
         public decimal GetTotalPenghasilan()
         {
             return dataDashboard.GetTotalPenghasilan();
+        }
+        public List<Dashboard> ReadPelangganHariIni()
+        {
+            dataDashboard.PelangganHariIni();
+            return dataDashboard.listDataDashboard;
         }
     }
 }

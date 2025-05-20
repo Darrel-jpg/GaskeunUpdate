@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
@@ -43,8 +44,12 @@
             PaketSewa = new DataGridViewTextBoxColumn();
             Durasi = new DataGridViewTextBoxColumn();
             Harga = new DataGridViewTextBoxColumn();
+            dashboardBindingSource = new BindingSource(components);
+            dashboardBindingSource1 = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dashboardBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dashboardBindingSource1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -54,7 +59,7 @@
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(28, 28);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1583, 540);
+            panel1.Size = new Size(1583, 970);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -91,11 +96,11 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(40, 65);
+            dataGridView1.Location = new Point(32, 65);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 60;
             dataGridView1.RowTemplate.Height = 40;
-            dataGridView1.Size = new Size(1497, 437);
+            dataGridView1.Size = new Size(1518, 872);
             dataGridView1.TabIndex = 2;
             // 
             // IdTransaksi
@@ -168,6 +173,14 @@
             Harga.MinimumWidth = 6;
             Harga.Name = "Harga";
             // 
+            // dashboardBindingSource
+            // 
+            dashboardBindingSource.DataSource = typeof(Models.Dashboard);
+            // 
+            // dashboardBindingSource1
+            // 
+            dashboardBindingSource1.DataSource = typeof(Models.Dashboard);
+            // 
             // TransaksiPelanggan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -179,6 +192,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dashboardBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dashboardBindingSource1).EndInit();
             ResumeLayout(false);
         }
 
@@ -197,5 +212,7 @@
         private DataGridViewTextBoxColumn PaketSewa;
         private DataGridViewTextBoxColumn Durasi;
         private DataGridViewTextBoxColumn Harga;
+        private BindingSource dashboardBindingSource;
+        private BindingSource dashboardBindingSource1;
     }
 }

@@ -71,7 +71,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(283, 587);
+            tableLayoutPanel1.Size = new Size(283, 1055);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -234,7 +234,7 @@
             panel8.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel8.BackColor = SystemColors.ButtonShadow;
             panel8.Controls.Add(btnLogout);
-            panel8.Location = new Point(3, 506);
+            panel8.Location = new Point(3, 974);
             panel8.Name = "panel8";
             panel8.Size = new Size(277, 78);
             panel8.TabIndex = 17;
@@ -268,7 +268,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(1064, 587);
+            ClientSize = new Size(1924, 1055);
             Controls.Add(tableLayoutPanel1);
             Name = "Form2";
             Text = "x";

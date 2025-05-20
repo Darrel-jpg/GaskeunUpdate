@@ -468,21 +468,21 @@
             // HargaHari
             // 
             HargaHari.DataPropertyName = "HargaPerHari";
-            HargaHari.HeaderText = "Harga per Hari";
+            HargaHari.HeaderText = "Harga/Hari";
             HargaHari.MinimumWidth = 6;
             HargaHari.Name = "HargaHari";
             // 
             // HargaMinggu
             // 
             HargaMinggu.DataPropertyName = "HargaPerMinggu";
-            HargaMinggu.HeaderText = "Harga per Minggu";
+            HargaMinggu.HeaderText = "Harga/Minggu";
             HargaMinggu.MinimumWidth = 6;
             HargaMinggu.Name = "HargaMinggu";
             // 
             // HargaBulan
             // 
             HargaBulan.DataPropertyName = "HargaPerBulan";
-            HargaBulan.HeaderText = "Harga per Bulan";
+            HargaBulan.HeaderText = "Harga/Bulan";
             HargaBulan.MinimumWidth = 6;
             HargaBulan.Name = "HargaBulan";
             // 

@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel5 = new Panel();
             lbIncome = new Label();
@@ -48,7 +51,15 @@
             label4 = new Label();
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
+            IdTransaksi = new DataGridViewTextBoxColumn();
+            Username = new DataGridViewTextBoxColumn();
+            Motor = new DataGridViewTextBoxColumn();
+            Mobil = new DataGridViewTextBoxColumn();
+            PaketSewa = new DataGridViewTextBoxColumn();
+            Durasi = new DataGridViewTextBoxColumn();
+            Harga = new DataGridViewTextBoxColumn();
             label2 = new Label();
+            dashboardBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -60,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dashboardBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -136,7 +148,7 @@
             lbJmlUser.AutoSize = true;
             lbJmlUser.Font = new Font("Arial Rounded MT Bold", 14F);
             lbJmlUser.ForeColor = Color.White;
-            lbJmlUser.Location = new Point(139, 53);
+            lbJmlUser.Location = new Point(220, 53);
             lbJmlUser.Name = "lbJmlUser";
             lbJmlUser.Size = new Size(54, 28);
             lbJmlUser.TabIndex = 11;
@@ -180,7 +192,7 @@
             lbJmlMobil.AutoSize = true;
             lbJmlMobil.Font = new Font("Arial Rounded MT Bold", 14F);
             lbJmlMobil.ForeColor = Color.White;
-            lbJmlMobil.Location = new Point(136, 53);
+            lbJmlMobil.Location = new Point(217, 53);
             lbJmlMobil.Name = "lbJmlMobil";
             lbJmlMobil.Size = new Size(40, 28);
             lbJmlMobil.TabIndex = 2;
@@ -223,7 +235,7 @@
             lbJmlMotor.AutoSize = true;
             lbJmlMotor.Font = new Font("Arial Rounded MT Bold", 14F);
             lbJmlMotor.ForeColor = Color.White;
-            lbJmlMotor.Location = new Point(141, 53);
+            lbJmlMotor.Location = new Point(222, 53);
             lbJmlMotor.Name = "lbJmlMotor";
             lbJmlMotor.Size = new Size(40, 28);
             lbJmlMotor.TabIndex = 5;
@@ -261,12 +273,82 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(34, 85);
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Navy;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeight = 40;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdTransaksi, Username, Motor, Mobil, PaketSewa, Durasi, Harga });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.Location = new Point(37, 81);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1500, 502);
+            dataGridView1.RowHeadersWidth = 60;
+            dataGridView1.RowTemplate.Height = 40;
+            dataGridView1.Size = new Size(1497, 531);
             dataGridView1.TabIndex = 3;
+            // 
+            // IdTransaksi
+            // 
+            IdTransaksi.DataPropertyName = "IdTransaksi";
+            IdTransaksi.HeaderText = "ID Transaksi";
+            IdTransaksi.MinimumWidth = 6;
+            IdTransaksi.Name = "IdTransaksi";
+            // 
+            // Username
+            // 
+            Username.DataPropertyName = "Username";
+            Username.HeaderText = "Username";
+            Username.MinimumWidth = 6;
+            Username.Name = "Username";
+            // 
+            // Motor
+            // 
+            Motor.DataPropertyName = "Motor";
+            Motor.HeaderText = "Motor";
+            Motor.MinimumWidth = 6;
+            Motor.Name = "Motor";
+            // 
+            // Mobil
+            // 
+            Mobil.DataPropertyName = "Mobil";
+            Mobil.HeaderText = "Mobil";
+            Mobil.MinimumWidth = 6;
+            Mobil.Name = "Mobil";
+            // 
+            // PaketSewa
+            // 
+            PaketSewa.DataPropertyName = "PaketSewa";
+            PaketSewa.HeaderText = "Paket Sewa";
+            PaketSewa.MinimumWidth = 6;
+            PaketSewa.Name = "PaketSewa";
+            // 
+            // Durasi
+            // 
+            Durasi.DataPropertyName = "Durasi";
+            Durasi.HeaderText = "Durasi";
+            Durasi.MinimumWidth = 6;
+            Durasi.Name = "Durasi";
+            // 
+            // Harga
+            // 
+            Harga.DataPropertyName = "Harga";
+            Harga.HeaderText = "Total Harga";
+            Harga.MinimumWidth = 6;
+            Harga.Name = "Harga";
             // 
             // label2
             // 
@@ -278,6 +360,10 @@
             label2.Size = new Size(218, 30);
             label2.TabIndex = 2;
             label2.Text = "Pelanggan Hari Ini";
+            // 
+            // dashboardBindingSource
+            // 
+            dashboardBindingSource.DataSource = typeof(Models.Dashboard);
             // 
             // Dashboard
             // 
@@ -305,6 +391,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dashboardBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -328,7 +415,15 @@
         private Label lbJmlMotor;
         private PictureBox pictureBox2;
         private Label label4;
-        private DataGridView dataGridView1;
         private Label label2;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn IdTransaksi;
+        private DataGridViewTextBoxColumn Username;
+        private DataGridViewTextBoxColumn Motor;
+        private DataGridViewTextBoxColumn Mobil;
+        private DataGridViewTextBoxColumn PaketSewa;
+        private DataGridViewTextBoxColumn Durasi;
+        private DataGridViewTextBoxColumn Harga;
+        private BindingSource dashboardBindingSource;
     }
 }
