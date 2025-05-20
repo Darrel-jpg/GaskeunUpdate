@@ -17,32 +17,42 @@ namespace Gaskeun_.View
             InitializeComponent();
         }
 
-        private bool vehicleCollapse;
-        private void bikeTimer_Tick(object sender, EventArgs e)
-        {
-            if (vehicleCollapse)
-            {
-                vehicleContainer.Height += 10;
-                if (vehicleContainer.Height == vehicleContainer.MaximumSize.Height)
-                {
-                    vehicleCollapse = false;
-                    VehicleTimer.Stop();
-                }
-            }
-            else
-            {
-                vehicleContainer.Height -= 10;
-                if (vehicleContainer.Height == vehicleContainer.MinimumSize.Height)
-                {
-                    vehicleCollapse = true;
-                    VehicleTimer.Stop();
-                }
-            }
-        }
+        //private void Form2_Load(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        pictureBox2.Load("https://i.imgur.com/3SQOYnI.png");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Gagal memuat gambar: " + ex.Message);
+        //    }
+        //}
 
-        private void btnVehicle_Click(object sender, EventArgs e)
+        private async void textBox1_TextChanged(object sender, EventArgs e)
         {
-            VehicleTimer.Start();
+            string url = textBox1.Text.Trim();
+
+            if (string.IsNullOrEmpty(url))
+            {
+                pictureBox2.Image = null; // hilangkan gambar kalau kosong
+                return;
+            }
+
+            try
+            {
+                using var wc = new System.Net.WebClient();
+                byte[] imageBytes = await wc.DownloadDataTaskAsync(url);
+
+                using var ms = new System.IO.MemoryStream(imageBytes);
+                Image img = Image.FromStream(ms);
+
+                pictureBox2.Image = img; // set gambar ke picturebox
+            }
+            catch
+            {
+                pictureBox2.Image = null; // kalau gagal load gambar, hilangkan gambar
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Gaskeun_.View
             newMobil.Merk = tbMerk.Text;
             newMobil.Tahun = tbTahun.Text;
             newMobil.Warna = tbWarna.Text;
+            newMobil.Gambar = tbGambar.Text;
             newMobil.HargaPerHari = decimal.Parse(tbHari.Text);
             newMobil.HargaPerMinggu = decimal.Parse(tbMinggu.Text);
             newMobil.HargaPerBulan = decimal.Parse(tbBulan.Text);
@@ -52,10 +53,11 @@ namespace Gaskeun_.View
                 tbMerk.Text = row.Cells[2].Value.ToString();
                 tbTahun.Text = row.Cells[3].Value.ToString();
                 tbWarna.Text = row.Cells[4].Value.ToString();
-                tbHari.Text = row.Cells[5].Value.ToString();
-                tbMinggu.Text = row.Cells[6].Value.ToString();
-                tbBulan.Text = row.Cells[7].Value.ToString();
-                cbStatus.Text = row.Cells[8].Value.ToString();
+                tbGambar.Text = row.Cells[5].Value.ToString();
+                tbHari.Text = row.Cells[6].Value.ToString();
+                tbMinggu.Text = row.Cells[7].Value.ToString();
+                tbBulan.Text = row.Cells[8].Value.ToString();
+                cbStatus.Text = row.Cells[9].Value.ToString();
 
                 platLama = tbPlat.Text;
             }
@@ -131,11 +133,36 @@ namespace Gaskeun_.View
             tbTahun.Text = "";
             tbPlat.Text = "";
             tbWarna.Text = "";
+            tbGambar.Text = "";
             tbHari.Text = "";
             tbMinggu.Text = "";
             tbBulan.Text = "";
             cbStatus.Text = "";
         }
 
+        private async void tbGambar_TextChanged(object sender, EventArgs e)
+        {
+            string url = tbGambar.Text.Trim();
+            if (string.IsNullOrEmpty(url))
+            {
+                pictureBox1.Image = null; 
+                return;
+            }
+
+            try
+            {
+                using var wc = new System.Net.WebClient();
+                byte[] imageBytes = await wc.DownloadDataTaskAsync(url);
+
+                using var ms = new System.IO.MemoryStream(imageBytes);
+                Image img = Image.FromStream(ms);
+
+                pictureBox1.Image = img; 
+            }
+            catch
+            {
+                pictureBox1.Image = null; 
+            }
+        }
     }
 }

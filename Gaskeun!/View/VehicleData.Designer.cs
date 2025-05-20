@@ -34,6 +34,7 @@
             btnHapus = new Button();
             btnUpdate = new Button();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             panel3 = new Panel();
             tbPlat = new TextBox();
             label2 = new Label();
@@ -42,7 +43,9 @@
             tbMerk = new TextBox();
             label6 = new Label();
             panel4 = new Panel();
+            label11 = new Label();
             label4 = new Label();
+            tbGambar = new TextBox();
             cbStatus = new ComboBox();
             tbTahun = new TextBox();
             label7 = new Label();
@@ -63,11 +66,13 @@
             Merk = new DataGridViewTextBoxColumn();
             Tahun = new DataGridViewTextBoxColumn();
             Warna = new DataGridViewTextBoxColumn();
+            Gambar = new DataGridViewTextBoxColumn();
             HargaHari = new DataGridViewTextBoxColumn();
             HargaMinggu = new DataGridViewTextBoxColumn();
             HargaBulan = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
@@ -85,7 +90,7 @@
             btnTambah.FlatStyle = FlatStyle.Flat;
             btnTambah.Font = new Font("Arial Rounded MT Bold", 14F);
             btnTambah.ForeColor = Color.White;
-            btnTambah.Location = new Point(387, 288);
+            btnTambah.Location = new Point(253, 288);
             btnTambah.Margin = new Padding(420, 3, 3, 3);
             btnTambah.Name = "btnTambah";
             btnTambah.Size = new Size(120, 52);
@@ -104,7 +109,7 @@
             btnHapus.FlatStyle = FlatStyle.Flat;
             btnHapus.Font = new Font("Arial Rounded MT Bold", 14F);
             btnHapus.ForeColor = Color.White;
-            btnHapus.Location = new Point(1052, 288);
+            btnHapus.Location = new Point(824, 288);
             btnHapus.Name = "btnHapus";
             btnHapus.Size = new Size(125, 52);
             btnHapus.TabIndex = 25;
@@ -122,7 +127,7 @@
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Arial Rounded MT Bold", 14F);
             btnUpdate.ForeColor = Color.White;
-            btnUpdate.Location = new Point(703, 288);
+            btnUpdate.Location = new Point(537, 288);
             btnUpdate.Margin = new Padding(190, 3, 3, 3);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(125, 52);
@@ -134,6 +139,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnHapus);
             panel1.Controls.Add(btnUpdate);
             panel1.Controls.Add(btnTambah);
@@ -145,6 +151,16 @@
             panel1.Size = new Size(1577, 397);
             panel1.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = SystemColors.ButtonShadow;
+            pictureBox1.Location = new Point(1230, 44);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(307, 223);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 30;
+            pictureBox1.TabStop = false;
+            // 
             // panel3
             // 
             panel3.Controls.Add(tbPlat);
@@ -153,7 +169,7 @@
             panel3.Controls.Add(label3);
             panel3.Controls.Add(tbMerk);
             panel3.Controls.Add(label6);
-            panel3.Location = new Point(174, 20);
+            panel3.Location = new Point(40, 20);
             panel3.Margin = new Padding(180, 20, 30, 30);
             panel3.Name = "panel3";
             panel3.Size = new Size(333, 224);
@@ -224,35 +240,59 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(label11);
             panel4.Controls.Add(label4);
+            panel4.Controls.Add(tbGambar);
             panel4.Controls.Add(cbStatus);
             panel4.Controls.Add(tbTahun);
             panel4.Controls.Add(label7);
             panel4.Controls.Add(tbWarna);
             panel4.Controls.Add(label8);
-            panel4.Location = new Point(613, 20);
+            panel4.Location = new Point(432, 20);
             panel4.Margin = new Padding(94, 20, 30, 30);
             panel4.Name = "panel4";
-            panel4.Size = new Size(315, 224);
+            panel4.Size = new Size(329, 235);
             panel4.TabIndex = 28;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Tahoma", 12F);
+            label11.ForeColor = Color.Black;
+            label11.Location = new Point(5, 142);
+            label11.Name = "label11";
+            label11.Size = new Size(121, 24);
+            label11.TabIndex = 30;
+            label11.Text = "URL Gambar";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Tahoma", 12F);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(48, 27);
+            label4.Location = new Point(61, 27);
             label4.Name = "label4";
             label4.Size = new Size(66, 24);
             label4.TabIndex = 7;
             label4.Text = "Tahun";
+            // 
+            // tbGambar
+            // 
+            tbGambar.BorderStyle = BorderStyle.FixedSingle;
+            tbGambar.Font = new Font("Tahoma", 12F);
+            tbGambar.Location = new Point(145, 138);
+            tbGambar.Multiline = true;
+            tbGambar.Name = "tbGambar";
+            tbGambar.Size = new Size(139, 31);
+            tbGambar.TabIndex = 31;
+            tbGambar.TextChanged += tbGambar_TextChanged;
             // 
             // cbStatus
             // 
             cbStatus.Font = new Font("Tahoma", 12F);
             cbStatus.FormattingEnabled = true;
             cbStatus.Items.AddRange(new object[] { "Tersedia", "Disewa" });
-            cbStatus.Location = new Point(132, 169);
+            cbStatus.Location = new Point(145, 191);
             cbStatus.Name = "cbStatus";
             cbStatus.Size = new Size(139, 32);
             cbStatus.TabIndex = 26;
@@ -261,7 +301,7 @@
             // 
             tbTahun.BorderStyle = BorderStyle.FixedSingle;
             tbTahun.Font = new Font("Tahoma", 12F);
-            tbTahun.Location = new Point(132, 23);
+            tbTahun.Location = new Point(145, 23);
             tbTahun.Multiline = true;
             tbTahun.Name = "tbTahun";
             tbTahun.Size = new Size(139, 31);
@@ -272,7 +312,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Tahoma", 12F);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(48, 103);
+            label7.Location = new Point(61, 84);
             label7.Name = "label7";
             label7.Size = new Size(68, 24);
             label7.TabIndex = 16;
@@ -282,7 +322,7 @@
             // 
             tbWarna.BorderStyle = BorderStyle.FixedSingle;
             tbWarna.Font = new Font("Tahoma", 12F);
-            tbWarna.Location = new Point(132, 99);
+            tbWarna.Location = new Point(145, 80);
             tbWarna.Multiline = true;
             tbWarna.Name = "tbWarna";
             tbWarna.Size = new Size(139, 31);
@@ -293,7 +333,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Tahoma", 12F);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(48, 172);
+            label8.Location = new Point(61, 194);
             label8.Name = "label8";
             label8.Size = new Size(66, 24);
             label8.TabIndex = 18;
@@ -307,7 +347,7 @@
             panel5.Controls.Add(label9);
             panel5.Controls.Add(label10);
             panel5.Controls.Add(tbMinggu);
-            panel5.Location = new Point(1052, 20);
+            panel5.Location = new Point(824, 20);
             panel5.Margin = new Padding(3, 20, 30, 30);
             panel5.Name = "panel5";
             panel5.Size = new Size(363, 224);
@@ -412,7 +452,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Plat, NamaMotor, Merk, Tahun, Warna, HargaHari, HargaMinggu, HargaBulan, Status });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Plat, NamaMotor, Merk, Tahun, Warna, Gambar, HargaHari, HargaMinggu, HargaBulan, Status });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -465,6 +505,13 @@
             Warna.MinimumWidth = 6;
             Warna.Name = "Warna";
             // 
+            // Gambar
+            // 
+            Gambar.DataPropertyName = "Gambar";
+            Gambar.HeaderText = "URL Gambar";
+            Gambar.MinimumWidth = 6;
+            Gambar.Name = "Gambar";
+            // 
             // HargaHari
             // 
             HargaHari.DataPropertyName = "HargaPerHari";
@@ -504,6 +551,7 @@
             Name = "VehicleData";
             Size = new Size(1637, 1025);
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
@@ -550,9 +598,13 @@
         private DataGridViewTextBoxColumn Merk;
         private DataGridViewTextBoxColumn Tahun;
         private DataGridViewTextBoxColumn Warna;
+        private DataGridViewTextBoxColumn Gambar;
         private DataGridViewTextBoxColumn HargaHari;
         private DataGridViewTextBoxColumn HargaMinggu;
         private DataGridViewTextBoxColumn HargaBulan;
         private DataGridViewTextBoxColumn Status;
+        private Label label11;
+        private TextBox tbGambar;
+        private PictureBox pictureBox1;
     }
 }

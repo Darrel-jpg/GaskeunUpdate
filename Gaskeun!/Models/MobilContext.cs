@@ -17,8 +17,8 @@ namespace Gaskeun_.Models
 
             using(NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
-                string query = @"INSERT INTO public.mobil(plat, nama_mobil, merk, tahun, warna, harga_per_hari, harga_per_minggu, harga_per_bulan, status)
-                                VALUES(@plat, @nama_mobil, @merk, @tahun, @warna, @harga_per_hari, @harga_per_minggu, @harga_per_bulan, @status);";
+                string query = @"INSERT INTO public.mobil(plat, nama_mobil, merk, tahun, warna, gambar, harga_per_hari, harga_per_minggu, harga_per_bulan, status)
+                                VALUES(@plat, @nama_mobil, @merk, @tahun, @warna, @gambar, @harga_per_hari, @harga_per_minggu, @harga_per_bulan, @status);";
                 conn.Open();
 
                 using(NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
@@ -28,6 +28,7 @@ namespace Gaskeun_.Models
                     cmd.Parameters.Add(new NpgsqlParameter("@merk", mobil.Merk));
                     cmd.Parameters.Add(new NpgsqlParameter("@tahun", mobil.Tahun));
                     cmd.Parameters.Add(new NpgsqlParameter("@warna", mobil.Warna));
+                    cmd.Parameters.Add(new NpgsqlParameter("@gambar", mobil.Gambar));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_hari", mobil.HargaPerHari));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_minggu", mobil.HargaPerMinggu));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_bulan", mobil.HargaPerBulan));
@@ -53,7 +54,7 @@ namespace Gaskeun_.Models
 
             using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
-                string query = @"SELECT plat, nama_mobil, merk, tahun, warna, harga_per_hari, harga_per_minggu, 
+                string query = @"SELECT plat, nama_mobil, merk, tahun, warna, gambar, harga_per_hari, harga_per_minggu, 
                                 harga_per_bulan, status FROM public.mobil";
                 conn.Open();
 
@@ -72,6 +73,7 @@ namespace Gaskeun_.Models
                         dataMobil.Merk = (string)reader["merk"];
                         dataMobil.Tahun = (string)reader["tahun"];
                         dataMobil.Warna = (string)reader["warna"];
+                        dataMobil.Gambar = (string)reader["gambar"];
                         dataMobil.HargaPerHari = (decimal)reader["harga_per_hari"];
                         dataMobil.HargaPerMinggu = (decimal)reader["harga_per_minggu"];
                         dataMobil.HargaPerBulan = (decimal)reader["harga_per_bulan"];
@@ -95,7 +97,7 @@ namespace Gaskeun_.Models
             using(NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
                 string query = @"UPDATE public.mobil
-                                SET plat = @plat, nama_mobil = @nama_mobil, merk = @merk, tahun = @tahun, warna = @warna,
+                                SET plat = @plat, nama_mobil = @nama_mobil, merk = @merk, tahun = @tahun, warna = @warna, gambar = @gambar,
                                     harga_per_hari = @harga_per_hari, harga_per_minggu = @harga_per_minggu,
                                     harga_per_bulan = @harga_per_bulan, status = @status
                                 WHERE plat = @platLama;";
@@ -108,6 +110,7 @@ namespace Gaskeun_.Models
                     cmd.Parameters.Add(new NpgsqlParameter("@merk", mobil.Merk));
                     cmd.Parameters.Add(new NpgsqlParameter("@tahun", mobil.Tahun));
                     cmd.Parameters.Add(new NpgsqlParameter("@warna", mobil.Warna));
+                    cmd.Parameters.Add(new NpgsqlParameter("@gambar", mobil.Gambar));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_hari", mobil.HargaPerHari));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_minggu", mobil.HargaPerMinggu));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_bulan", mobil.HargaPerBulan));
@@ -129,6 +132,7 @@ namespace Gaskeun_.Models
                                 t.Merk = mobil.Merk;
                                 t.Tahun = mobil.Tahun;
                                 t.Warna = mobil.Warna;
+                                t.Gambar = mobil.Gambar;
                                 t.HargaPerHari = mobil.HargaPerHari;
                                 t.HargaPerMinggu = mobil.HargaPerMinggu;
                                 t.HargaPerBulan = mobil.HargaPerBulan;

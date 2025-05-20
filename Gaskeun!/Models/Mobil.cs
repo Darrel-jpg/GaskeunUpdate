@@ -13,6 +13,7 @@ namespace Gaskeun_.Models
         public string Merk { get; set; }
         public string Tahun { get; set; }
         public string Warna { get; set; }
+        public string Gambar { get; set; }
         public decimal HargaPerHari { get; set; }
         public decimal HargaPerMinggu { get; set; }
         public decimal HargaPerBulan { get; set; }

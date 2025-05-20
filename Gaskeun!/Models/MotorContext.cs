@@ -18,17 +18,18 @@ namespace Gaskeun_.Models
 
             using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
-                string query = @"INSERT INTO public.motor(nama_motor, merk, tahun, plat, warna, harga_per_hari, harga_per_minggu, harga_per_bulan, status)
-                                VALUES(@nama_motor, @merk, @tahun, @plat, @warna, @harga_per_hari, @harga_per_minggu, @harga_per_bulan, @status);";
+                string query = @"INSERT INTO public.motor(nama_motor, merk, tahun, plat, warna, gambar, harga_per_hari, harga_per_minggu, harga_per_bulan, status)
+                                VALUES(@nama_motor, @merk, @tahun, @plat, @warna, @gambar, @harga_per_hari, @harga_per_minggu, @harga_per_bulan, @status);";
                 conn.Open();
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
+                    cmd.Parameters.Add(new NpgsqlParameter("@plat", motor.Plat));
                     cmd.Parameters.Add(new NpgsqlParameter("@nama_motor", motor.NamaMotor));
                     cmd.Parameters.Add(new NpgsqlParameter("@merk", motor.Merk));
                     cmd.Parameters.Add(new NpgsqlParameter("@tahun", motor.Tahun));
-                    cmd.Parameters.Add(new NpgsqlParameter("@plat", motor.Plat));
                     cmd.Parameters.Add(new NpgsqlParameter("@warna", motor.Warna));
+                    cmd.Parameters.Add(new NpgsqlParameter("@gambar", motor.Gambar));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_hari", motor.HargaPerHari));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_minggu", motor.HargaPerMinggu));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_bulan", motor.HargaPerBulan));
@@ -54,7 +55,7 @@ namespace Gaskeun_.Models
 
             using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
-                string query = @"SELECT plat, nama_motor, merk, tahun, warna, harga_per_hari, harga_per_minggu, 
+                string query = @"SELECT plat, nama_motor, merk, tahun, warna, gambar, harga_per_hari, harga_per_minggu, 
                                 harga_per_bulan, status FROM public.motor";
                 conn.Open();
 
@@ -73,6 +74,7 @@ namespace Gaskeun_.Models
                         dataMotor.Merk = (string)reader["merk"];
                         dataMotor.Tahun = (string)reader["tahun"];
                         dataMotor.Warna = (string)reader["warna"];
+                        dataMotor.Gambar = (string)reader["gambar"];
                         dataMotor.HargaPerHari = (decimal)reader["harga_per_hari"];
                         dataMotor.HargaPerMinggu = (decimal)reader["harga_per_minggu"];
                         dataMotor.HargaPerBulan = (decimal)reader["harga_per_bulan"];
@@ -96,7 +98,7 @@ namespace Gaskeun_.Models
             using(NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
                 string query = @"UPDATE public.motor
-                                SET  plat = @plat, nama_motor = @nama_motor, merk = @merk, tahun = @tahun, warna = @warna,
+                                SET  plat = @plat, nama_motor = @nama_motor, merk = @merk, tahun = @tahun, warna = @warna,  gambar = @gambar,
                                     harga_per_hari = @harga_per_hari, harga_per_minggu = @harga_per_minggu,
                                     harga_per_bulan = @harga_per_bulan, status = @status
                                 WHERE plat = @plat_lama";
@@ -109,6 +111,7 @@ namespace Gaskeun_.Models
                     cmd.Parameters.Add(new NpgsqlParameter("@merk", motor.Merk));
                     cmd.Parameters.Add(new NpgsqlParameter("@tahun", motor.Tahun));
                     cmd.Parameters.Add(new NpgsqlParameter("@warna", motor.Warna));
+                    cmd.Parameters.Add(new NpgsqlParameter("@gambar", motor.Gambar));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_hari", motor.HargaPerHari));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_minggu", motor.HargaPerMinggu));
                     cmd.Parameters.Add(new NpgsqlParameter("@harga_per_bulan", motor.HargaPerBulan));
@@ -130,6 +133,7 @@ namespace Gaskeun_.Models
                                 t.Merk = motor.Merk;
                                 t.Tahun = motor.Tahun;
                                 t.Warna = motor.Warna;
+                                t.Gambar = motor.Gambar;
                                 t.HargaPerHari = motor.HargaPerHari;
                                 t.HargaPerMinggu = motor.HargaPerMinggu;
                                 t.HargaPerBulan = motor.HargaPerBulan;
