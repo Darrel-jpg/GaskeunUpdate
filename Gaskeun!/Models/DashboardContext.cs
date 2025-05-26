@@ -7,45 +7,29 @@ using Npgsql;
 
 namespace Gaskeun_.Models
 {
-    public class DashboardContext
+    public class DashboardContext : Connection
     {
-        public List<Dashboard> listDataDashboard = new List<Dashboard>();
-        string conStr = "Server=localhost;Port=5432;User Id=postgres;Password=postgres;Database=Rental;";
-        public int GetJumlahMobil()
+        public List<Transaksi> listDataDashboard = new List<Transaksi>();
+        public int GetJumlahKendaraan(string jenis)
         {
-            using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
+            using (var conn = GetConnection())
             {
-                string query = @"SELECT COUNT(*) FROM public.mobil";
+                string query = @"SELECT COUNT(*) FROM kendaraan WHERE jenis_kendaraan = @jenis";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
+                    cmd.Parameters.Add(new NpgsqlParameter("@jenis", jenis));
                     cmd.CommandType = System.Data.CommandType.Text;
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     return count;
                 }
             }
         }
-
-        public int GetJumlahMotor()
-        {
-            using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
-            {
-                string query = @"SELECT COUNT(*) FROM public.motor";
-                conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
-                {
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count;
-                }
-            }
-        }
-
         public int GetJumlahPelanggan()
         {
-            using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
+            using (var conn = GetConnection())
             {
-                string query = @"SELECT COUNT(*) FROM public.akun_pelanggan";
+                string query = @"SELECT COUNT(*) FROM akun WHERE role = 'pelanggan'";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
@@ -59,7 +43,7 @@ namespace Gaskeun_.Models
         {
             using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
-                string query = @"SELECT SUM(harga) FROM public.transaksi";
+                string query = @"SELECT SUM(harga) FROM transaksi";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
@@ -69,17 +53,15 @@ namespace Gaskeun_.Models
                 }
             }
         }
-        public bool PelangganHariIni()
+        public List<Transaksi> PelangganHariIni()
         {
-            bool isSuccess = false;
-            using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
+            using (var conn = GetConnection())
             {
-                string query = @"SELECT t.id_transaksi, p.username, mob.nama_mobil, mot.nama_motor, t.paket_sewa, t.durasi, t.harga
-                                FROM transaksi t 
-                                LEFT JOIN akun_pelanggan p ON t.id_pelanggan = p.id_akun_pelanggan
-                                LEFT JOIN mobil mob ON t.id_mobil = mob.id_mobil
-                                LEFT JOIN motor mot ON t.id_motor = mot.id_motor
-                                where t.tanggal_sewa = current_date";
+                string query = @"SELECT a.username, k.jenis_kendaraan, k.nama_kendaraan, t.durasi, t.paket_sewa, t.harga
+                                FROM transaksi t
+                                JOIN akun a ON t.id_pelanggan = a.id_akun
+                                JOIN kendaraan k ON t.id_kendaraan = k.id_kendaraan
+                                WHERE t.tanggal_sewa = current_date";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
@@ -88,22 +70,18 @@ namespace Gaskeun_.Models
                     listDataDashboard.Clear();
                     while (reader.Read())
                     {
-                        Dashboard dataDashboard = new Dashboard();
-
-                        dataDashboard.IdTransaksi = (int)reader["id_transaksi"];
+                        Transaksi dataDashboard = new Transaksi();
                         dataDashboard.Username = (string)reader["username"];
-                        dataDashboard.Mobil = reader.IsDBNull(reader.GetOrdinal("nama_mobil")) ? "-" : reader["nama_mobil"].ToString();
-                        dataDashboard.Motor = reader.IsDBNull(reader.GetOrdinal("nama_motor")) ? "-" : reader["nama_motor"].ToString();
-                        dataDashboard.PaketSewa = (string)reader["paket_sewa"];
+                        dataDashboard.JenisKendaraan = (string)reader["jenis_kendaraan"];
+                        dataDashboard.NamaKendaraan = (string)reader["nama_kendaraan"];
                         dataDashboard.Durasi = (int)reader["durasi"];
+                        dataDashboard.PaketSewa = (string)reader["paket_sewa"];
                         dataDashboard.Harga = (decimal)reader["harga"];
-
                         listDataDashboard.Add(dataDashboard);
                     }
-                    isSuccess = true;
                 }
+                return listDataDashboard;
             }
-            return isSuccess;
         }
     }
 }

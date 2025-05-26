@@ -51,15 +51,14 @@
             label4 = new Label();
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
-            IdTransaksi = new DataGridViewTextBoxColumn();
+            label2 = new Label();
+            dashboardBindingSource = new BindingSource(components);
             Username = new DataGridViewTextBoxColumn();
-            Motor = new DataGridViewTextBoxColumn();
-            Mobil = new DataGridViewTextBoxColumn();
+            JenisKendaraan = new DataGridViewTextBoxColumn();
+            NamaKendaraan = new DataGridViewTextBoxColumn();
             PaketSewa = new DataGridViewTextBoxColumn();
             Durasi = new DataGridViewTextBoxColumn();
             Harga = new DataGridViewTextBoxColumn();
-            label2 = new Label();
-            dashboardBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -284,7 +283,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdTransaksi, Username, Motor, Mobil, PaketSewa, Durasi, Harga });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Username, JenisKendaraan, NamaKendaraan, PaketSewa, Durasi, Harga });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -301,12 +300,20 @@
             dataGridView1.Size = new Size(1497, 531);
             dataGridView1.TabIndex = 3;
             // 
-            // IdTransaksi
+            // label2
             // 
-            IdTransaksi.DataPropertyName = "IdTransaksi";
-            IdTransaksi.HeaderText = "ID Transaksi";
-            IdTransaksi.MinimumWidth = 6;
-            IdTransaksi.Name = "IdTransaksi";
+            label2.AutoSize = true;
+            label2.Font = new Font("Tahoma", 15F);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(36, 44);
+            label2.Name = "label2";
+            label2.Size = new Size(218, 30);
+            label2.TabIndex = 2;
+            label2.Text = "Pelanggan Hari Ini";
+            // 
+            // dashboardBindingSource
+            // 
+            dashboardBindingSource.DataSource = typeof(Models.Dashboard);
             // 
             // Username
             // 
@@ -315,19 +322,19 @@
             Username.MinimumWidth = 6;
             Username.Name = "Username";
             // 
-            // Motor
+            // JenisKendaraan
             // 
-            Motor.DataPropertyName = "Motor";
-            Motor.HeaderText = "Motor";
-            Motor.MinimumWidth = 6;
-            Motor.Name = "Motor";
+            JenisKendaraan.DataPropertyName = "JenisKendaraan";
+            JenisKendaraan.HeaderText = "Jenis Kendaraan";
+            JenisKendaraan.MinimumWidth = 6;
+            JenisKendaraan.Name = "JenisKendaraan";
             // 
-            // Mobil
+            // NamaKendaraan
             // 
-            Mobil.DataPropertyName = "Mobil";
-            Mobil.HeaderText = "Mobil";
-            Mobil.MinimumWidth = 6;
-            Mobil.Name = "Mobil";
+            NamaKendaraan.DataPropertyName = "NamaKendaraan";
+            NamaKendaraan.HeaderText = "Nama Kendaraan";
+            NamaKendaraan.MinimumWidth = 6;
+            NamaKendaraan.Name = "NamaKendaraan";
             // 
             // PaketSewa
             // 
@@ -349,21 +356,6 @@
             Harga.HeaderText = "Total Harga";
             Harga.MinimumWidth = 6;
             Harga.Name = "Harga";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Tahoma", 15F);
-            label2.ForeColor = Color.Black;
-            label2.Location = new Point(36, 44);
-            label2.Name = "label2";
-            label2.Size = new Size(218, 30);
-            label2.TabIndex = 2;
-            label2.Text = "Pelanggan Hari Ini";
-            // 
-            // dashboardBindingSource
-            // 
-            dashboardBindingSource.DataSource = typeof(Models.Dashboard);
             // 
             // Dashboard
             // 
@@ -417,13 +409,12 @@
         private Label label4;
         private Label label2;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn IdTransaksi;
+        private BindingSource dashboardBindingSource;
         private DataGridViewTextBoxColumn Username;
-        private DataGridViewTextBoxColumn Motor;
-        private DataGridViewTextBoxColumn Mobil;
+        private DataGridViewTextBoxColumn JenisKendaraan;
+        private DataGridViewTextBoxColumn NamaKendaraan;
         private DataGridViewTextBoxColumn PaketSewa;
         private DataGridViewTextBoxColumn Durasi;
         private DataGridViewTextBoxColumn Harga;
-        private BindingSource dashboardBindingSource;
     }
 }

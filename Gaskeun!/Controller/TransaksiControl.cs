@@ -16,8 +16,7 @@ namespace Gaskeun_.Controller
         }
         public List<Transaksi> ReadTransaksi()
         {
-            transaksiContext.Read();
-            return transaksiContext.listTransaksi;
+            return transaksiContext.Read();
         }
     }
 }

@@ -14,28 +14,31 @@ namespace Gaskeun_.View
 {
     public partial class VehicleData : UserControl
     {
+        KendaraanContext kendaraanContext;
+        Kendaraan newMotor = new Kendaraan();
+        KendaraanControl motorControl = new KendaraanControl();
         private string platLama;
+        private string jenis = "Motor";
         public VehicleData()
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
-            MotorControl motorControl = new MotorControl();
-            dataGridView1.DataSource = motorControl.GetAllMotors();
+            dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
         }
 
-        public Motor GetMotor()
+        public Kendaraan GetMotor()
         {
-            Motor newMotor = new Motor();
-
             newMotor.Plat = tbPlat.Text;
-            newMotor.NamaMotor = tbNamaMotor.Text;
+            newMotor.JenisKendaraan = jenis;
+            newMotor.NamaKendaraan = tbNamaMotor.Text;
             newMotor.Merk = tbMerk.Text;
             newMotor.Tahun = tbTahun.Text;
-            newMotor.Warna = tbWarna.Text;
+            newMotor.CC = tbCC.Text;
+            newMotor.KapasitasBensin = tbBensin.Text;
             newMotor.Gambar = tbGambar.Text;
-            newMotor.HargaPerHari = decimal.Parse(tbHari.Text);
-            newMotor.HargaPerMinggu = decimal.Parse(tbMinggu.Text);
-            newMotor.HargaPerBulan = decimal.Parse(tbBulan.Text);
+            newMotor.HargaHari = decimal.Parse(tbHari.Text);
+            newMotor.HargaMinggu = decimal.Parse(tbMinggu.Text);
+            newMotor.HargaBulan = decimal.Parse(tbBulan.Text);
             newMotor.Status = cbStatus.SelectedItem?.ToString();
 
             return newMotor;
@@ -50,12 +53,13 @@ namespace Gaskeun_.View
                 tbNamaMotor.Text = row.Cells[1].Value.ToString();
                 tbMerk.Text = row.Cells[2].Value.ToString();
                 tbTahun.Text = row.Cells[3].Value.ToString();
-                tbWarna.Text = row.Cells[4].Value.ToString();
-                tbGambar.Text = row.Cells[5].Value.ToString();
-                tbHari.Text = row.Cells[6].Value.ToString();
-                tbMinggu.Text = row.Cells[7].Value.ToString();
-                tbBulan.Text = row.Cells[8].Value.ToString();
-                cbStatus.Text = row.Cells[9].Value.ToString();
+                tbCC.Text = row.Cells[4].Value.ToString();
+                tbBensin.Text = row.Cells[5].Value.ToString();
+                tbGambar.Text = row.Cells[6].Value.ToString();
+                tbHari.Text = row.Cells[7].Value.ToString();
+                tbMinggu.Text = row.Cells[8].Value.ToString();
+                tbBulan.Text = row.Cells[9].Value.ToString();
+                cbStatus.Text = row.Cells[10].Value.ToString();
 
                 platLama = tbPlat.Text;
             }
@@ -63,9 +67,7 @@ namespace Gaskeun_.View
 
         private void btnTambah_Click(object sender, EventArgs e)
         {
-            Motor newMotor = GetMotor();
-            MotorControl motorControl = new MotorControl();
-            bool isSucces = motorControl.AddMotor(newMotor);
+            bool isSucces = motorControl.AddKendaraan(GetMotor());
 
             if (isSucces)
             {
@@ -77,8 +79,7 @@ namespace Gaskeun_.View
             }
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = motorControl.GetAllMotors();
-
+            dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
             ClearForm();
         }
 
@@ -91,14 +92,13 @@ namespace Gaskeun_.View
                 return;
             }
 
-            Motor newMotor = GetMotor();
-            MotorControl motorControl = new MotorControl();
-            if (motorControl.UpdateMotor(newMotor, platLama))
+            //Kendaraan newMotor = GetMotor();
+            if (motorControl.UpdateKendaraan(GetMotor(), platLama))
             {
                 MessageBox.Show("Data motor berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = motorControl.GetAllMotors();
+                dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
                 platLama = null;
                 ClearForm();
             }
@@ -110,14 +110,13 @@ namespace Gaskeun_.View
 
         private void btnHapus_Click(object sender, EventArgs e)
         {
-            Motor motor = GetMotor();
-            MotorControl motorControl = new MotorControl();
-            if (motorControl.DeleteMotor(motor))
+            //Kendaraan motor = GetMotor();
+            if (motorControl.DeleteKendaraan(GetMotor()))
             {
                 MessageBox.Show("Data motor berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = motorControl.GetAllMotors();
+                dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
             }
             else
             {
@@ -131,7 +130,8 @@ namespace Gaskeun_.View
             tbNamaMotor.Text = "";
             tbMerk.Text = "";
             tbTahun.Text = "";
-            tbWarna.Text = "";
+            tbCC.Text = "";
+            tbBensin.Text = "";
             tbGambar.Text = "";
             tbHari.Text = "";
             tbMinggu.Text = "";
@@ -156,12 +156,20 @@ namespace Gaskeun_.View
                 using var ms = new System.IO.MemoryStream(imageBytes);
                 Image img = Image.FromStream(ms);
 
-                pictureBox1.Image = img; 
+                pictureBox1.Image = img;
             }
             catch
             {
-                pictureBox1.Image = null; 
+                pictureBox1.Image = null;
             }
+        }
+
+        private void VehicleData_Load(object sender, EventArgs e)
+        {
+            dataGridView1.Columns[1].Width = 150; // Lebar kolom NamaKendaraan
+            dataGridView1.Columns[4].Width = 100; // Lebar kolom CC
+            dataGridView1.Columns[6].Width = 100; // Lebar kolom Gambar
+            dataGridView1.Columns[8].Width = 160; // Lebar kolom HargaMinggu
         }
     }
 }

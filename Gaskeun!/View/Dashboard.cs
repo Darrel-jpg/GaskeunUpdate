@@ -18,15 +18,15 @@ namespace Gaskeun_.View
         public Dashboard()
         {
             InitializeComponent();
-            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = dashboardControl.ReadPelangganHariIni();
 
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            lbJmlMobil.Text = dashboardControl.GetJumlahMobil().ToString();
-            lbJmlMotor.Text = dashboardControl.GetJumlahMotor().ToString();
+            lbJmlMobil.Text = dashboardControl.GetJumlahKendaraan("Mobil").ToString();
+            lbJmlMotor.Text = dashboardControl.GetJumlahKendaraan("Motor").ToString();
             lbJmlUser.Text = dashboardControl.GetJumlahPelanggan().ToString();
             lbIncome.Text = dashboardControl.GetTotalPenghasilan().ToString("C", System.Globalization.CultureInfo.GetCultureInfo("id-ID"));
         }

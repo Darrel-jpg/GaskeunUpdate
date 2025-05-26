@@ -10,13 +10,9 @@ namespace Gaskeun_.Controller
     public class DashboardControl
     {
         DashboardContext dataDashboard = new DashboardContext();
-        public int GetJumlahMobil()
+        public int GetJumlahKendaraan(string jenis)
         {
-            return dataDashboard.GetJumlahMobil();
-        }
-        public int GetJumlahMotor()
-        {
-            return dataDashboard.GetJumlahMotor();
+            return dataDashboard.GetJumlahKendaraan(jenis);
         }
         public int GetJumlahPelanggan()
         {
@@ -26,10 +22,9 @@ namespace Gaskeun_.Controller
         {
             return dataDashboard.GetTotalPenghasilan();
         }
-        public List<Dashboard> ReadPelangganHariIni()
+        public List<Transaksi> ReadPelangganHariIni()
         {
-            dataDashboard.PelangganHariIni();
-            return dataDashboard.listDataDashboard;
+            return dataDashboard.PelangganHariIni();
         }
     }
 }

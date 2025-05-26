@@ -8,10 +8,9 @@ namespace Gaskeun_.Models
 {
     public class Dashboard
     {
-        public int IdTransaksi { get; set; }
         public string Username { get; set; }
-        public string Motor { get; set; }
-        public string Mobil { get; set; }
+        public string JenisKendaraan { get; set; }
+        public string NamaKendaraan { get; set; }
         public string PaketSewa { get; set; }
         public int Durasi { get; set; }
         public decimal Harga { get; set; }

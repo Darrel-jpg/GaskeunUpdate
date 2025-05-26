@@ -42,19 +42,21 @@
             btnHapus = new Button();
             btnUpdate = new Button();
             panel4 = new Panel();
+            label12 = new Label();
+            tbCC = new TextBox();
             label11 = new Label();
             tbGambar = new TextBox();
-            tbTahun = new TextBox();
             cbStatus = new ComboBox();
-            label4 = new Label();
             label7 = new Label();
-            tbWarna = new TextBox();
+            tbBensin = new TextBox();
             label8 = new Label();
             btnTambah = new Button();
             panel3 = new Panel();
             tbPlat = new TextBox();
             label2 = new Label();
+            tbTahun = new TextBox();
             label6 = new Label();
+            label4 = new Label();
             tbMerk = new TextBox();
             tbNamaMobil = new TextBox();
             label3 = new Label();
@@ -65,7 +67,8 @@
             NamaMobil = new DataGridViewTextBoxColumn();
             Merk = new DataGridViewTextBoxColumn();
             Tahun = new DataGridViewTextBoxColumn();
-            Warna = new DataGridViewTextBoxColumn();
+            CC = new DataGridViewTextBoxColumn();
+            KapasitasBensin = new DataGridViewTextBoxColumn();
             Gambar = new DataGridViewTextBoxColumn();
             HargaHari = new DataGridViewTextBoxColumn();
             HargaMinggu = new DataGridViewTextBoxColumn();
@@ -98,11 +101,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = SystemColors.ButtonShadow;
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Location = new Point(1234, 41);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(307, 223);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 31;
             pictureBox1.TabStop = false;
             // 
@@ -222,13 +225,13 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(label12);
+            panel4.Controls.Add(tbCC);
             panel4.Controls.Add(label11);
             panel4.Controls.Add(tbGambar);
-            panel4.Controls.Add(tbTahun);
             panel4.Controls.Add(cbStatus);
-            panel4.Controls.Add(label4);
             panel4.Controls.Add(label7);
-            panel4.Controls.Add(tbWarna);
+            panel4.Controls.Add(tbBensin);
             panel4.Controls.Add(label8);
             panel4.Location = new Point(407, 20);
             panel4.Margin = new Padding(94, 20, 30, 30);
@@ -236,16 +239,37 @@
             panel4.Size = new Size(329, 235);
             panel4.TabIndex = 28;
             // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Tahoma", 12F);
+            label12.ForeColor = Color.Black;
+            label12.Location = new Point(93, 28);
+            label12.Name = "label12";
+            label12.Size = new Size(34, 24);
+            label12.TabIndex = 29;
+            label12.Text = "CC";
+            // 
+            // tbCC
+            // 
+            tbCC.BorderStyle = BorderStyle.FixedSingle;
+            tbCC.Font = new Font("Tahoma", 12F);
+            tbCC.Location = new Point(148, 24);
+            tbCC.Multiline = true;
+            tbCC.Name = "tbCC";
+            tbCC.Size = new Size(139, 31);
+            tbCC.TabIndex = 30;
+            // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Tahoma", 12F);
             label11.ForeColor = Color.Black;
-            label11.Location = new Point(63, 138);
+            label11.Location = new Point(9, 138);
             label11.Name = "label11";
-            label11.Size = new Size(80, 24);
+            label11.Size = new Size(121, 24);
             label11.TabIndex = 27;
-            label11.Text = "Gambar";
+            label11.Text = "URL Gambar";
             // 
             // tbGambar
             // 
@@ -258,16 +282,6 @@
             tbGambar.TabIndex = 28;
             tbGambar.TextChanged += tbGambar_TextChanged;
             // 
-            // tbTahun
-            // 
-            tbTahun.BorderStyle = BorderStyle.FixedSingle;
-            tbTahun.Font = new Font("Tahoma", 12F);
-            tbTahun.Location = new Point(148, 23);
-            tbTahun.Multiline = true;
-            tbTahun.Name = "tbTahun";
-            tbTahun.Size = new Size(139, 31);
-            tbTahun.TabIndex = 8;
-            // 
             // cbStatus
             // 
             cbStatus.Font = new Font("Segoe UI", 12F);
@@ -278,17 +292,6 @@
             cbStatus.Size = new Size(139, 36);
             cbStatus.TabIndex = 26;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Tahoma", 12F);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(65, 27);
-            label4.Name = "label4";
-            label4.Size = new Size(66, 24);
-            label4.TabIndex = 7;
-            label4.Text = "Tahun";
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -296,19 +299,19 @@
             label7.ForeColor = Color.Black;
             label7.Location = new Point(63, 84);
             label7.Name = "label7";
-            label7.Size = new Size(68, 24);
+            label7.Size = new Size(69, 24);
             label7.TabIndex = 16;
-            label7.Text = "Warna";
+            label7.Text = "Bensin";
             // 
-            // tbWarna
+            // tbBensin
             // 
-            tbWarna.BorderStyle = BorderStyle.FixedSingle;
-            tbWarna.Font = new Font("Tahoma", 12F);
-            tbWarna.Location = new Point(148, 79);
-            tbWarna.Multiline = true;
-            tbWarna.Name = "tbWarna";
-            tbWarna.Size = new Size(139, 31);
-            tbWarna.TabIndex = 17;
+            tbBensin.BorderStyle = BorderStyle.FixedSingle;
+            tbBensin.Font = new Font("Tahoma", 12F);
+            tbBensin.Location = new Point(148, 79);
+            tbBensin.Multiline = true;
+            tbBensin.Name = "tbBensin";
+            tbBensin.Size = new Size(139, 31);
+            tbBensin.TabIndex = 17;
             // 
             // label8
             // 
@@ -344,14 +347,16 @@
             // 
             panel3.Controls.Add(tbPlat);
             panel3.Controls.Add(label2);
+            panel3.Controls.Add(tbTahun);
             panel3.Controls.Add(label6);
+            panel3.Controls.Add(label4);
             panel3.Controls.Add(tbMerk);
             panel3.Controls.Add(tbNamaMobil);
             panel3.Controls.Add(label3);
             panel3.Location = new Point(34, 20);
             panel3.Margin = new Padding(180, 20, 30, 30);
             panel3.Name = "panel3";
-            panel3.Size = new Size(315, 224);
+            panel3.Size = new Size(315, 235);
             panel3.TabIndex = 27;
             // 
             // tbPlat
@@ -369,11 +374,21 @@
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 12F);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(18, 102);
+            label2.Location = new Point(18, 85);
             label2.Name = "label2";
             label2.Size = new Size(115, 24);
             label2.TabIndex = 0;
             label2.Text = "Nama Mobil";
+            // 
+            // tbTahun
+            // 
+            tbTahun.BorderStyle = BorderStyle.FixedSingle;
+            tbTahun.Font = new Font("Tahoma", 12F);
+            tbTahun.Location = new Point(150, 192);
+            tbTahun.Multiline = true;
+            tbTahun.Name = "tbTahun";
+            tbTahun.Size = new Size(139, 31);
+            tbTahun.TabIndex = 8;
             // 
             // label6
             // 
@@ -386,11 +401,22 @@
             label6.TabIndex = 14;
             label6.Text = "Plat";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Tahoma", 12F);
+            label4.ForeColor = Color.Black;
+            label4.Location = new Point(67, 196);
+            label4.Name = "label4";
+            label4.Size = new Size(66, 24);
+            label4.TabIndex = 7;
+            label4.Text = "Tahun";
+            // 
             // tbMerk
             // 
             tbMerk.BorderStyle = BorderStyle.FixedSingle;
             tbMerk.Font = new Font("Tahoma", 12F);
-            tbMerk.Location = new Point(150, 169);
+            tbMerk.Location = new Point(150, 136);
             tbMerk.Multiline = true;
             tbMerk.Name = "tbMerk";
             tbMerk.Size = new Size(139, 31);
@@ -400,7 +426,7 @@
             // 
             tbNamaMobil.BorderStyle = BorderStyle.FixedSingle;
             tbNamaMobil.Font = new Font("Tahoma", 12F);
-            tbNamaMobil.Location = new Point(150, 99);
+            tbNamaMobil.Location = new Point(150, 82);
             tbNamaMobil.Multiline = true;
             tbNamaMobil.Name = "tbNamaMobil";
             tbNamaMobil.Size = new Size(139, 31);
@@ -411,7 +437,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 12F);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(80, 171);
+            label3.Location = new Point(80, 138);
             label3.Name = "label3";
             label3.Size = new Size(53, 24);
             label3.TabIndex = 5;
@@ -452,7 +478,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Plat, NamaMobil, Merk, Tahun, Warna, Gambar, HargaHari, HargaMinggu, HargaBulan, Status });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Plat, NamaMobil, Merk, Tahun, CC, KapasitasBensin, Gambar, HargaHari, HargaMinggu, HargaBulan, Status });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -479,7 +505,7 @@
             // 
             // NamaMobil
             // 
-            NamaMobil.DataPropertyName = "NamaMobil";
+            NamaMobil.DataPropertyName = "NamaKendaraan";
             NamaMobil.HeaderText = "Nama Mobil";
             NamaMobil.MinimumWidth = 6;
             NamaMobil.Name = "NamaMobil";
@@ -498,12 +524,19 @@
             Tahun.MinimumWidth = 6;
             Tahun.Name = "Tahun";
             // 
-            // Warna
+            // CC
             // 
-            Warna.DataPropertyName = "Warna";
-            Warna.HeaderText = "Warna";
-            Warna.MinimumWidth = 6;
-            Warna.Name = "Warna";
+            CC.DataPropertyName = "CC";
+            CC.HeaderText = "CC";
+            CC.MinimumWidth = 6;
+            CC.Name = "CC";
+            // 
+            // KapasitasBensin
+            // 
+            KapasitasBensin.DataPropertyName = "KapasitasBensin";
+            KapasitasBensin.HeaderText = "Bensin";
+            KapasitasBensin.MinimumWidth = 6;
+            KapasitasBensin.Name = "KapasitasBensin";
             // 
             // Gambar
             // 
@@ -514,21 +547,21 @@
             // 
             // HargaHari
             // 
-            HargaHari.DataPropertyName = "HargaPerHari";
+            HargaHari.DataPropertyName = "HargaHari";
             HargaHari.HeaderText = "Harga/Hari";
             HargaHari.MinimumWidth = 6;
             HargaHari.Name = "HargaHari";
             // 
             // HargaMinggu
             // 
-            HargaMinggu.DataPropertyName = "HargaPerMinggu";
+            HargaMinggu.DataPropertyName = "HargaMinggu";
             HargaMinggu.HeaderText = "Harga/Minggu";
             HargaMinggu.MinimumWidth = 6;
             HargaMinggu.Name = "HargaMinggu";
             // 
             // HargaBulan
             // 
-            HargaBulan.DataPropertyName = "HargaPerBulan";
+            HargaBulan.DataPropertyName = "HargaBulan";
             HargaBulan.HeaderText = "Harga/Bulan";
             HargaBulan.MinimumWidth = 6;
             HargaBulan.Name = "HargaBulan";
@@ -549,6 +582,7 @@
             Controls.Add(panel2);
             Name = "MobilData";
             Size = new Size(1637, 1025);
+            Load += MobilData_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel5.ResumeLayout(false);
@@ -574,7 +608,7 @@
         private TextBox tbMinggu;
         private Label label9;
         private Label label8;
-        private TextBox tbWarna;
+        private TextBox tbBensin;
         private Label label7;
         private TextBox tbPlat;
         private Label label6;
@@ -596,11 +630,14 @@
         private Label label11;
         private TextBox tbGambar;
         private PictureBox pictureBox1;
+        private Label label12;
+        private TextBox tbCC;
         private DataGridViewTextBoxColumn Plat;
         private DataGridViewTextBoxColumn NamaMobil;
         private DataGridViewTextBoxColumn Merk;
         private DataGridViewTextBoxColumn Tahun;
-        private DataGridViewTextBoxColumn Warna;
+        private DataGridViewTextBoxColumn CC;
+        private DataGridViewTextBoxColumn KapasitasBensin;
         private DataGridViewTextBoxColumn Gambar;
         private DataGridViewTextBoxColumn HargaHari;
         private DataGridViewTextBoxColumn HargaMinggu;

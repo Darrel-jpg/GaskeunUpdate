@@ -14,29 +14,32 @@ namespace Gaskeun_.View
 {
     public partial class MobilData : UserControl
     {
-        MobilContext mobilContext;
+        KendaraanContext kendaraanContext;
+        Kendaraan newMobil = new Kendaraan();
+        KendaraanControl mobilControl = new KendaraanControl();
         private string platLama;
+        private string jenis = "Mobil";
+
         public MobilData()
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
-            MobilControl mobilControl = new MobilControl();
-            dataGridView1.DataSource = mobilControl.ReadMobil();
+            dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
         }
 
-        public Mobil GetMobil()
+        public Kendaraan GetMobil()
         {
-            Mobil newMobil = new Mobil();
-
             newMobil.Plat = tbPlat.Text;
-            newMobil.NamaMobil = tbNamaMobil.Text;
             newMobil.Merk = tbMerk.Text;
+            newMobil.JenisKendaraan = jenis;
+            newMobil.NamaKendaraan = tbNamaMobil.Text;
             newMobil.Tahun = tbTahun.Text;
-            newMobil.Warna = tbWarna.Text;
+            newMobil.CC = tbCC.Text;
+            newMobil.KapasitasBensin = tbBensin.Text;
             newMobil.Gambar = tbGambar.Text;
-            newMobil.HargaPerHari = decimal.Parse(tbHari.Text);
-            newMobil.HargaPerMinggu = decimal.Parse(tbMinggu.Text);
-            newMobil.HargaPerBulan = decimal.Parse(tbBulan.Text);
+            newMobil.HargaHari = decimal.Parse(tbHari.Text);
+            newMobil.HargaMinggu = decimal.Parse(tbMinggu.Text);
+            newMobil.HargaBulan = decimal.Parse(tbBulan.Text);
             newMobil.Status = cbStatus.SelectedItem?.ToString();
 
             return newMobil;
@@ -52,12 +55,13 @@ namespace Gaskeun_.View
                 tbNamaMobil.Text = row.Cells[1].Value.ToString();
                 tbMerk.Text = row.Cells[2].Value.ToString();
                 tbTahun.Text = row.Cells[3].Value.ToString();
-                tbWarna.Text = row.Cells[4].Value.ToString();
-                tbGambar.Text = row.Cells[5].Value.ToString();
-                tbHari.Text = row.Cells[6].Value.ToString();
-                tbMinggu.Text = row.Cells[7].Value.ToString();
-                tbBulan.Text = row.Cells[8].Value.ToString();
-                cbStatus.Text = row.Cells[9].Value.ToString();
+                tbCC.Text = row.Cells[4].Value.ToString();
+                tbBensin.Text = row.Cells[5].Value.ToString();
+                tbGambar.Text = row.Cells[6].Value.ToString();
+                tbHari.Text = row.Cells[7].Value.ToString();
+                tbMinggu.Text = row.Cells[8].Value.ToString();
+                tbBulan.Text = row.Cells[9].Value.ToString();
+                cbStatus.Text = row.Cells[10].Value.ToString();
 
                 platLama = tbPlat.Text;
             }
@@ -65,9 +69,7 @@ namespace Gaskeun_.View
 
         private void btnTambah_Click(object sender, EventArgs e)
         {
-            Mobil newMobil = GetMobil();
-            MobilControl mobilControl = new MobilControl();
-            bool isSucces = mobilControl.AddMobil(newMobil);
+            bool isSucces = mobilControl.AddKendaraan(GetMobil());
 
             if (isSucces)
             {
@@ -75,11 +77,11 @@ namespace Gaskeun_.View
             }
             else
             {
-                MessageBox.Show("Gagal menambahkan motor!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Gagal menambahkan mobil!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = mobilControl.ReadMobil();
+            dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
             ClearForm();
         }
 
@@ -91,38 +93,36 @@ namespace Gaskeun_.View
                 return;
             }
 
-            Mobil newMobil = GetMobil();
-            MobilControl mobilControl = new MobilControl();
-            if (mobilControl.UpdateMobil(newMobil, platLama))
+            //Kendaraan newMobil = GetMobil();
+            if (mobilControl.UpdateKendaraan(GetMobil(), platLama))
             {
                 MessageBox.Show("Data mobil berhasil diperbarui!");
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = mobilControl.ReadMobil();
+                dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
                 platLama = null;
 
                 ClearForm();
             }
             else
             {
-                MessageBox.Show("Gagal memperbarui data motor!");
+                MessageBox.Show("Gagal memperbarui data mobil!");
             }
         }
 
         private void btnHapus_Click(object sender, EventArgs e)
         {
-            Mobil mobil = GetMobil();
-            MobilControl mobilControl = new MobilControl();
-            if (mobilControl.DeleteMobil(mobil))
+            //Kendaraan mobil = GetMobil();
+            if (mobilControl.DeleteKendaraan(GetMobil()))
             {
                 MessageBox.Show("Data mobil berhasil dihapus!");
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = mobilControl.ReadMobil();
+                dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
             }
             else
             {
-                MessageBox.Show("Gagal menghapus data motor!");
+                MessageBox.Show("Gagal menghapus data mobil!");
             }
         }
 
@@ -132,7 +132,8 @@ namespace Gaskeun_.View
             tbMerk.Text = "";
             tbTahun.Text = "";
             tbPlat.Text = "";
-            tbWarna.Text = "";
+            tbCC.Text = "";
+            tbBensin.Text = "";
             tbGambar.Text = "";
             tbHari.Text = "";
             tbMinggu.Text = "";
@@ -145,7 +146,7 @@ namespace Gaskeun_.View
             string url = tbGambar.Text.Trim();
             if (string.IsNullOrEmpty(url))
             {
-                pictureBox1.Image = null; 
+                pictureBox1.Image = null;
                 return;
             }
 
@@ -157,12 +158,20 @@ namespace Gaskeun_.View
                 using var ms = new System.IO.MemoryStream(imageBytes);
                 Image img = Image.FromStream(ms);
 
-                pictureBox1.Image = img; 
+                pictureBox1.Image = img;
             }
             catch
             {
-                pictureBox1.Image = null; 
+                pictureBox1.Image = null;
             }
+        }
+
+        private void MobilData_Load(object sender, EventArgs e)
+        {
+            dataGridView1.Columns[1].Width = 150; // Lebar kolom NamaKendaraan
+            dataGridView1.Columns[4].Width = 100; // Lebar kolom CC
+            dataGridView1.Columns[6].Width = 100; // Lebar kolom Gambar
+            dataGridView1.Columns[8].Width = 160; // Lebar kolom HargaMinggu
         }
     }
 }

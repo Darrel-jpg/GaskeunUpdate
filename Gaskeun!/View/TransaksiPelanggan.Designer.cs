@@ -34,10 +34,9 @@
             panel1 = new Panel();
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            IdTransaksi = new DataGridViewTextBoxColumn();
             Username = new DataGridViewTextBoxColumn();
-            Motor = new DataGridViewTextBoxColumn();
-            Mobil = new DataGridViewTextBoxColumn();
+            JenisKendaraan = new DataGridViewTextBoxColumn();
+            NamaKendaraan = new DataGridViewTextBoxColumn();
             TanggalSewa = new DataGridViewTextBoxColumn();
             TanggalKembali = new DataGridViewTextBoxColumn();
             Jaminan = new DataGridViewTextBoxColumn();
@@ -86,7 +85,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdTransaksi, Username, Motor, Mobil, TanggalSewa, TanggalKembali, Jaminan, PaketSewa, Durasi, Harga });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Username, JenisKendaraan, NamaKendaraan, TanggalSewa, TanggalKembali, Jaminan, PaketSewa, Durasi, Harga });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -103,13 +102,6 @@
             dataGridView1.Size = new Size(1518, 872);
             dataGridView1.TabIndex = 2;
             // 
-            // IdTransaksi
-            // 
-            IdTransaksi.DataPropertyName = "IdTransaksi";
-            IdTransaksi.HeaderText = "ID Transaksi";
-            IdTransaksi.MinimumWidth = 6;
-            IdTransaksi.Name = "IdTransaksi";
-            // 
             // Username
             // 
             Username.DataPropertyName = "Username";
@@ -117,19 +109,19 @@
             Username.MinimumWidth = 6;
             Username.Name = "Username";
             // 
-            // Motor
+            // JenisKendaraan
             // 
-            Motor.DataPropertyName = "Motor";
-            Motor.HeaderText = "Motor";
-            Motor.MinimumWidth = 6;
-            Motor.Name = "Motor";
+            JenisKendaraan.DataPropertyName = "JenisKendaraan";
+            JenisKendaraan.HeaderText = "Jenis Kendaraan";
+            JenisKendaraan.MinimumWidth = 6;
+            JenisKendaraan.Name = "JenisKendaraan";
             // 
-            // Mobil
+            // NamaKendaraan
             // 
-            Mobil.DataPropertyName = "Mobil";
-            Mobil.HeaderText = "Mobil";
-            Mobil.MinimumWidth = 6;
-            Mobil.Name = "Mobil";
+            NamaKendaraan.DataPropertyName = "NamaKendaraan";
+            NamaKendaraan.HeaderText = "Nama Kendaraan";
+            NamaKendaraan.MinimumWidth = 6;
+            NamaKendaraan.Name = "NamaKendaraan";
             // 
             // TanggalSewa
             // 
@@ -189,6 +181,7 @@
             Controls.Add(panel1);
             Name = "TransaksiPelanggan";
             Size = new Size(1637, 1025);
+            Load += TransaksiPelanggan_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -202,17 +195,16 @@
         private Panel panel1;
         private Label label1;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn IdTransaksi;
+        private BindingSource dashboardBindingSource;
+        private BindingSource dashboardBindingSource1;
         private DataGridViewTextBoxColumn Username;
-        private DataGridViewTextBoxColumn Motor;
-        private DataGridViewTextBoxColumn Mobil;
+        private DataGridViewTextBoxColumn JenisKendaraan;
+        private DataGridViewTextBoxColumn NamaKendaraan;
         private DataGridViewTextBoxColumn TanggalSewa;
         private DataGridViewTextBoxColumn TanggalKembali;
         private DataGridViewTextBoxColumn Jaminan;
         private DataGridViewTextBoxColumn PaketSewa;
         private DataGridViewTextBoxColumn Durasi;
         private DataGridViewTextBoxColumn Harga;
-        private BindingSource dashboardBindingSource;
-        private BindingSource dashboardBindingSource1;
     }
 }

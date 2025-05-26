@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace Gaskeun_.Models
 {
-    public class Mobil
+    public class Kendaraan
     {
         public string Plat { get; set; }
-        public string NamaMobil { get; set; }
+        public string JenisKendaraan { get; set; }
+        public string NamaKendaraan { get; set; }
         public string Merk { get; set; }
         public string Tahun { get; set; }
-        public string Warna { get; set; }
+        public string CC { get; set; }
+        public string KapasitasBensin { get; set; }
         public string Gambar { get; set; }
-        public decimal HargaPerHari { get; set; }
-        public decimal HargaPerMinggu { get; set; }
-        public decimal HargaPerBulan { get; set; }
+        public decimal HargaHari { get; set; }
+        public decimal HargaMinggu { get; set; }
+        public decimal HargaBulan { get; set; }
         public string Status { get; set; }
     }
 }

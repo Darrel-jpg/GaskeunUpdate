@@ -96,5 +96,12 @@ namespace Gaskeun_.View
             //this.FormBorderStyle = FormBorderStyle.None;
         }
 
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 loginForm = new Form1();
+            this.Hide();
+            loginForm.ShowDialog();
+            this.Close();
+        }
     }
 }

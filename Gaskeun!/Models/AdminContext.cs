@@ -15,13 +15,14 @@ namespace Gaskeun_.Models
             string conStr = "Server=localhost;Port=5432;User Id=postgres;Password=postgres;Database=Rental;";
             using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
             {
-                string sqlAdmin = "SELECT COUNT(1) FROM akun_admin WHERE username = @username AND password = @password";
+                string sqlAdmin = "SELECT COUNT(1) FROM akun WHERE username = @username AND password = @password AND role = @role";
                 conn.Open();
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(sqlAdmin, conn))
                 {
                     cmd.Parameters.AddWithValue("username", username);
                     cmd.Parameters.AddWithValue("password", password);
+                    cmd.Parameters.AddWithValue("role", "admin");
 
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     if (count > 0)
