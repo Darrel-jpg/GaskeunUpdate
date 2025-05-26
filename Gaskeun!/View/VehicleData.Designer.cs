@@ -34,7 +34,9 @@
             btnHapus = new Button();
             btnUpdate = new Button();
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
+            btnUpload = new Button();
+            btnChoose = new Button();
+            image = new PictureBox();
             panel3 = new Panel();
             tbPlat = new TextBox();
             label4 = new Label();
@@ -74,8 +76,9 @@
             HargaMinggu = new DataGridViewTextBoxColumn();
             HargaBulan = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
@@ -142,7 +145,9 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(btnUpload);
+            panel1.Controls.Add(btnChoose);
+            panel1.Controls.Add(image);
             panel1.Controls.Add(btnHapus);
             panel1.Controls.Add(btnUpdate);
             panel1.Controls.Add(btnTambah);
@@ -154,15 +159,51 @@
             panel1.Size = new Size(1577, 397);
             panel1.TabIndex = 2;
             // 
-            // pictureBox1
+            // btnUpload
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Location = new Point(1230, 44);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(307, 223);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 30;
-            pictureBox1.TabStop = false;
+            btnUpload.BackColor = Color.FromArgb(33, 52, 72);
+            btnUpload.Cursor = Cursors.Hand;
+            btnUpload.FlatAppearance.BorderSize = 0;
+            btnUpload.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 114, 184);
+            btnUpload.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 114, 184);
+            btnUpload.FlatStyle = FlatStyle.Flat;
+            btnUpload.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnUpload.ForeColor = Color.White;
+            btnUpload.Location = new Point(1395, 288);
+            btnUpload.Name = "btnUpload";
+            btnUpload.Size = new Size(142, 52);
+            btnUpload.TabIndex = 32;
+            btnUpload.Text = "Upload";
+            btnUpload.UseVisualStyleBackColor = false;
+            btnUpload.Click += btnUpload_Click;
+            // 
+            // btnChoose
+            // 
+            btnChoose.BackColor = Color.FromArgb(33, 52, 72);
+            btnChoose.Cursor = Cursors.Hand;
+            btnChoose.FlatAppearance.BorderSize = 0;
+            btnChoose.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 114, 184);
+            btnChoose.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 114, 184);
+            btnChoose.FlatStyle = FlatStyle.Flat;
+            btnChoose.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnChoose.ForeColor = Color.White;
+            btnChoose.Location = new Point(1230, 288);
+            btnChoose.Name = "btnChoose";
+            btnChoose.Size = new Size(142, 52);
+            btnChoose.TabIndex = 31;
+            btnChoose.Text = "Choose";
+            btnChoose.UseVisualStyleBackColor = false;
+            btnChoose.Click += btnChoose_Click;
+            // 
+            // image
+            // 
+            image.BackColor = Color.Transparent;
+            image.Location = new Point(1230, 44);
+            image.Name = "image";
+            image.Size = new Size(307, 223);
+            image.SizeMode = PictureBoxSizeMode.Zoom;
+            image.TabIndex = 30;
+            image.TabStop = false;
             // 
             // panel3
             // 
@@ -573,6 +614,11 @@
             Status.MinimumWidth = 6;
             Status.Name = "Status";
             // 
+            // backgroundWorker1
+            // 
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            // 
             // VehicleData
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -585,7 +631,7 @@
             Size = new Size(1637, 1025);
             Load += VehicleData_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)image).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
@@ -629,7 +675,7 @@
         private DataGridView dataGridView1;
         private Label label11;
         private TextBox tbGambar;
-        private PictureBox pictureBox1;
+        private PictureBox image;
         private Label label12;
         private TextBox tbBensin;
         private DataGridViewTextBoxColumn Plat;
@@ -643,5 +689,8 @@
         private DataGridViewTextBoxColumn HargaMinggu;
         private DataGridViewTextBoxColumn HargaBulan;
         private DataGridViewTextBoxColumn Status;
+        private Button btnUpload;
+        private Button btnChoose;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

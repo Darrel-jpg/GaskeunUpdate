@@ -28,42 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox2 = new PictureBox();
-            textBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            image = new PictureBox();
+            button1 = new Button();
+            button2 = new Button();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            tbGambar = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox2
+            // image
             // 
-            pictureBox2.Location = new Point(64, 56);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(184, 213);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 0;
-            pictureBox2.TabStop = false;
+            image.Location = new Point(91, 23);
+            image.Name = "image";
+            image.Size = new Size(290, 267);
+            image.SizeMode = PictureBoxSizeMode.Zoom;
+            image.TabIndex = 0;
+            image.TabStop = false;
             // 
-            // textBox1
+            // button1
             // 
-            textBox1.Location = new Point(393, 93);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(197, 27);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
+            button1.Location = new Point(91, 314);
+            button1.Name = "button1";
+            button1.Size = new Size(130, 29);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(251, 314);
+            button2.Name = "button2";
+            button2.Size = new Size(130, 29);
+            button2.TabIndex = 2;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // backgroundWorker1
+            // 
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            // 
+            // tbGambar
+            // 
+            tbGambar.Location = new Point(547, 107);
+            tbGambar.Name = "tbGambar";
+            tbGambar.Size = new Size(218, 27);
+            tbGambar.TabIndex = 3;
             // 
             // Form2
             // 
             ClientSize = new Size(882, 453);
-            Controls.Add(textBox1);
-            Controls.Add(pictureBox2);
+            Controls.Add(tbGambar);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(image);
             Name = "Form2";
-            //Load += Form2_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)image).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private PictureBox pictureBox2;
-        private TextBox textBox1;
+        private PictureBox image;
+        private Button button1;
+        private Button button2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private TextBox tbGambar;
     }
 }

@@ -7,52 +7,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace Gaskeun_.View
 {
     public partial class Form2 : Form
     {
+        public Cloudinary cloudinary;
+        public const string CLOUD_NAME = "dqsnhqpta";
+        public const string API_KEY = "415453362647782";
+        public const string API_SECRET = "2eO5TB3MKkx_M-AyaA7NOQ9PV_Q";
+        public string imagePath;
+        public string imageUrl;
         public Form2()
         {
             InitializeComponent();
         }
 
-        //private void Form2_Load(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        pictureBox2.Load("https://i.imgur.com/3SQOYnI.png");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Gagal memuat gambar: " + ex.Message);
-        //    }
-        //}
-
-        private async void textBox1_TextChanged(object sender, EventArgs e)
+        private void cloudinaryStorage()
         {
-            string url = textBox1.Text.Trim();
+            Account account = new Account(CLOUD_NAME, API_KEY, API_SECRET);
+            cloudinary = new Cloudinary(account);
+            imageUrl = uploadImage(imagePath);
+        }
 
-            if (string.IsNullOrEmpty(url))
+        private string uploadImage(string path)
+        {
+            var uploadParams = new ImageUploadParams()
             {
-                pictureBox2.Image = null; // hilangkan gambar kalau kosong
-                return;
-            }
+                File = new FileDescription(path),
+            };
+            var uploadResult = cloudinary.Upload(uploadParams);
+            return uploadResult.SecureUrl.ToString();
+        }
 
-            try
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Image |*.jpg;*.jpeg;*.png";
+            DialogResult result = dlg.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                using var wc = new System.Net.WebClient();
-                byte[] imageBytes = await wc.DownloadDataTaskAsync(url);
-
-                using var ms = new System.IO.MemoryStream(imageBytes);
-                Image img = Image.FromStream(ms);
-
-                pictureBox2.Image = img; // set gambar ke picturebox
+                image.Image = new Bitmap(dlg.FileName);
+                imagePath = dlg.FileName;
             }
-            catch
-            {
-                pictureBox2.Image = null; // kalau gagal load gambar, hilangkan gambar
-            }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            cloudinaryStorage();
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            tbGambar.Text = imageUrl;
+            image.Load(imageUrl);
+            MessageBox.Show("Image uploaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.RunWorkerAsync();
         }
     }
 }

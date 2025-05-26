@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
+            btnUpload = new Button();
+            btnChoose = new Button();
+            image = new PictureBox();
             panel5 = new Panel();
             label5 = new Label();
             tbHari = new TextBox();
@@ -74,8 +76,9 @@
             HargaMinggu = new DataGridViewTextBoxColumn();
             HargaBulan = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
@@ -86,7 +89,9 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(btnUpload);
+            panel1.Controls.Add(btnChoose);
+            panel1.Controls.Add(image);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(btnHapus);
             panel1.Controls.Add(btnUpdate);
@@ -99,15 +104,51 @@
             panel1.Size = new Size(1577, 397);
             panel1.TabIndex = 4;
             // 
-            // pictureBox1
+            // btnUpload
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Location = new Point(1234, 41);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(307, 223);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 31;
-            pictureBox1.TabStop = false;
+            btnUpload.BackColor = Color.FromArgb(33, 52, 72);
+            btnUpload.Cursor = Cursors.Hand;
+            btnUpload.FlatAppearance.BorderSize = 0;
+            btnUpload.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 114, 184);
+            btnUpload.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 114, 184);
+            btnUpload.FlatStyle = FlatStyle.Flat;
+            btnUpload.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnUpload.ForeColor = Color.White;
+            btnUpload.Location = new Point(1399, 288);
+            btnUpload.Name = "btnUpload";
+            btnUpload.Size = new Size(142, 52);
+            btnUpload.TabIndex = 34;
+            btnUpload.Text = "Upload";
+            btnUpload.UseVisualStyleBackColor = false;
+            btnUpload.Click += btnUpload_Click;
+            // 
+            // btnChoose
+            // 
+            btnChoose.BackColor = Color.FromArgb(33, 52, 72);
+            btnChoose.Cursor = Cursors.Hand;
+            btnChoose.FlatAppearance.BorderSize = 0;
+            btnChoose.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 114, 184);
+            btnChoose.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 114, 184);
+            btnChoose.FlatStyle = FlatStyle.Flat;
+            btnChoose.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnChoose.ForeColor = Color.White;
+            btnChoose.Location = new Point(1234, 288);
+            btnChoose.Name = "btnChoose";
+            btnChoose.Size = new Size(142, 52);
+            btnChoose.TabIndex = 33;
+            btnChoose.Text = "Choose";
+            btnChoose.UseVisualStyleBackColor = false;
+            btnChoose.Click += btnChoose_Click;
+            // 
+            // image
+            // 
+            image.BackColor = Color.Transparent;
+            image.Location = new Point(1234, 41);
+            image.Name = "image";
+            image.Size = new Size(307, 223);
+            image.SizeMode = PictureBoxSizeMode.Zoom;
+            image.TabIndex = 31;
+            image.TabStop = false;
             // 
             // panel5
             // 
@@ -117,7 +158,7 @@
             panel5.Controls.Add(tbMinggu);
             panel5.Controls.Add(tbBulan);
             panel5.Controls.Add(label10);
-            panel5.Location = new Point(796, 20);
+            panel5.Location = new Point(824, 20);
             panel5.Margin = new Padding(3, 20, 30, 30);
             panel5.Name = "panel5";
             panel5.Size = new Size(363, 224);
@@ -196,7 +237,7 @@
             btnHapus.FlatStyle = FlatStyle.Flat;
             btnHapus.Font = new Font("Arial Rounded MT Bold", 14F);
             btnHapus.ForeColor = Color.White;
-            btnHapus.Location = new Point(796, 288);
+            btnHapus.Location = new Point(824, 288);
             btnHapus.Name = "btnHapus";
             btnHapus.Size = new Size(125, 52);
             btnHapus.TabIndex = 25;
@@ -214,7 +255,7 @@
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Arial Rounded MT Bold", 14F);
             btnUpdate.ForeColor = Color.White;
-            btnUpdate.Location = new Point(497, 288);
+            btnUpdate.Location = new Point(537, 288);
             btnUpdate.Margin = new Padding(190, 3, 3, 3);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(125, 52);
@@ -233,7 +274,7 @@
             panel4.Controls.Add(label7);
             panel4.Controls.Add(tbBensin);
             panel4.Controls.Add(label8);
-            panel4.Location = new Point(407, 20);
+            panel4.Location = new Point(432, 20);
             panel4.Margin = new Padding(94, 20, 30, 30);
             panel4.Name = "panel4";
             panel4.Size = new Size(329, 235);
@@ -334,7 +375,7 @@
             btnTambah.FlatStyle = FlatStyle.Flat;
             btnTambah.Font = new Font("Arial Rounded MT Bold", 14F);
             btnTambah.ForeColor = Color.White;
-            btnTambah.Location = new Point(227, 288);
+            btnTambah.Location = new Point(253, 288);
             btnTambah.Margin = new Padding(420, 3, 3, 3);
             btnTambah.Name = "btnTambah";
             btnTambah.Size = new Size(122, 52);
@@ -353,10 +394,10 @@
             panel3.Controls.Add(tbMerk);
             panel3.Controls.Add(tbNamaMobil);
             panel3.Controls.Add(label3);
-            panel3.Location = new Point(34, 20);
+            panel3.Location = new Point(33, 20);
             panel3.Margin = new Padding(180, 20, 30, 30);
             panel3.Name = "panel3";
-            panel3.Size = new Size(315, 235);
+            panel3.Size = new Size(340, 235);
             panel3.TabIndex = 27;
             // 
             // tbPlat
@@ -468,25 +509,25 @@
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Navy;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Navy;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Plat, NamaMobil, Merk, Tahun, CC, KapasitasBensin, Gambar, HargaHari, HargaMinggu, HargaBulan, Status });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(34, 65);
             dataGridView1.Name = "dataGridView1";
@@ -573,6 +614,11 @@
             Status.MinimumWidth = 6;
             Status.Name = "Status";
             // 
+            // backgroundWorker1
+            // 
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            // 
             // MobilData
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -584,7 +630,7 @@
             Size = new Size(1637, 1025);
             Load += MobilData_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)image).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
@@ -629,7 +675,7 @@
         private Panel panel4;
         private Label label11;
         private TextBox tbGambar;
-        private PictureBox pictureBox1;
+        private PictureBox image;
         private Label label12;
         private TextBox tbCC;
         private DataGridViewTextBoxColumn Plat;
@@ -643,5 +689,8 @@
         private DataGridViewTextBoxColumn HargaMinggu;
         private DataGridViewTextBoxColumn HargaBulan;
         private DataGridViewTextBoxColumn Status;
+        private Button btnUpload;
+        private Button btnChoose;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
