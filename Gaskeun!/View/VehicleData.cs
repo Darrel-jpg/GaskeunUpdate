@@ -1,6 +1,7 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Gaskeun_.Controller;
+using Gaskeun_.Helper;
 using Gaskeun_.Models;
 using System;
 using System.Collections.Generic;
@@ -28,17 +29,18 @@ namespace Gaskeun_.View
         KendaraanControl motorControl = new KendaraanControl();
         private string platLama;
         private string jenis = "Motor";
+        private int idJenis = KendaraanHelper.ConvertJenisKendaraan("Motor");
         public VehicleData()
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
+            dataGridView1.DataSource = motorControl.ReadKendaraan(idJenis);
         }
 
         public Kendaraan GetMotor()
         {
             newMotor.Plat = tbPlat.Text;
-            newMotor.JenisKendaraan = jenis;
+            newMotor.IdJenisKendaraan = KendaraanHelper.ConvertJenisKendaraan(jenis);
             newMotor.NamaKendaraan = tbNamaMotor.Text;
             newMotor.Merk = tbMerk.Text;
             newMotor.Tahun = tbTahun.Text;
@@ -48,7 +50,7 @@ namespace Gaskeun_.View
             newMotor.HargaHari = decimal.Parse(tbHari.Text);
             newMotor.HargaMinggu = decimal.Parse(tbMinggu.Text);
             newMotor.HargaBulan = decimal.Parse(tbBulan.Text);
-            newMotor.Status = cbStatus.SelectedItem?.ToString();
+            newMotor.Status = KendaraanHelper.ConvertStatus(cbStatus.SelectedItem?.ToString());
 
             return newMotor;
         }
@@ -88,7 +90,7 @@ namespace Gaskeun_.View
             }
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
+            dataGridView1.DataSource = motorControl.ReadKendaraan(idJenis);
             ClearForm();
         }
 
@@ -107,7 +109,7 @@ namespace Gaskeun_.View
                 MessageBox.Show("Data motor berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
+                dataGridView1.DataSource = motorControl.ReadKendaraan(idJenis);
                 platLama = null;
                 ClearForm();
             }
@@ -125,7 +127,7 @@ namespace Gaskeun_.View
                 MessageBox.Show("Data motor berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = motorControl.ReadKendaraan(jenis);
+                dataGridView1.DataSource = motorControl.ReadKendaraan(idJenis);
             }
             else
             {

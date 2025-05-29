@@ -34,17 +34,17 @@
             panel1 = new Panel();
             label1 = new Label();
             dataGridView1 = new DataGridView();
+            dashboardBindingSource = new BindingSource(components);
+            dashboardBindingSource1 = new BindingSource(components);
             Username = new DataGridViewTextBoxColumn();
             JenisKendaraan = new DataGridViewTextBoxColumn();
             NamaKendaraan = new DataGridViewTextBoxColumn();
             TanggalSewa = new DataGridViewTextBoxColumn();
             TanggalKembali = new DataGridViewTextBoxColumn();
             Jaminan = new DataGridViewTextBoxColumn();
-            PaketSewa = new DataGridViewTextBoxColumn();
             Durasi = new DataGridViewTextBoxColumn();
+            PaketSewa = new DataGridViewTextBoxColumn();
             Harga = new DataGridViewTextBoxColumn();
-            dashboardBindingSource = new BindingSource(components);
-            dashboardBindingSource1 = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dashboardBindingSource).BeginInit();
@@ -85,7 +85,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Username, JenisKendaraan, NamaKendaraan, TanggalSewa, TanggalKembali, Jaminan, PaketSewa, Durasi, Harga });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Username, JenisKendaraan, NamaKendaraan, TanggalSewa, TanggalKembali, Jaminan, Durasi, PaketSewa, Harga });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -101,6 +101,14 @@
             dataGridView1.RowTemplate.Height = 40;
             dataGridView1.Size = new Size(1518, 872);
             dataGridView1.TabIndex = 2;
+            // 
+            // dashboardBindingSource
+            // 
+            dashboardBindingSource.DataSource = typeof(Models.Dashboard);
+            // 
+            // dashboardBindingSource1
+            // 
+            dashboardBindingSource1.DataSource = typeof(Models.Dashboard);
             // 
             // Username
             // 
@@ -144,13 +152,6 @@
             Jaminan.MinimumWidth = 6;
             Jaminan.Name = "Jaminan";
             // 
-            // PaketSewa
-            // 
-            PaketSewa.DataPropertyName = "PaketSewa";
-            PaketSewa.HeaderText = "Paket Sewa";
-            PaketSewa.MinimumWidth = 6;
-            PaketSewa.Name = "PaketSewa";
-            // 
             // Durasi
             // 
             Durasi.DataPropertyName = "Durasi";
@@ -158,20 +159,19 @@
             Durasi.MinimumWidth = 6;
             Durasi.Name = "Durasi";
             // 
+            // PaketSewa
+            // 
+            PaketSewa.DataPropertyName = "PaketSewa";
+            PaketSewa.HeaderText = "Paket Sewa";
+            PaketSewa.MinimumWidth = 6;
+            PaketSewa.Name = "PaketSewa";
+            // 
             // Harga
             // 
             Harga.DataPropertyName = "Harga";
             Harga.HeaderText = "Total Harga";
             Harga.MinimumWidth = 6;
             Harga.Name = "Harga";
-            // 
-            // dashboardBindingSource
-            // 
-            dashboardBindingSource.DataSource = typeof(Models.Dashboard);
-            // 
-            // dashboardBindingSource1
-            // 
-            dashboardBindingSource1.DataSource = typeof(Models.Dashboard);
             // 
             // TransaksiPelanggan
             // 
@@ -203,8 +203,8 @@
         private DataGridViewTextBoxColumn TanggalSewa;
         private DataGridViewTextBoxColumn TanggalKembali;
         private DataGridViewTextBoxColumn Jaminan;
-        private DataGridViewTextBoxColumn PaketSewa;
         private DataGridViewTextBoxColumn Durasi;
+        private DataGridViewTextBoxColumn PaketSewa;
         private DataGridViewTextBoxColumn Harga;
     }
 }

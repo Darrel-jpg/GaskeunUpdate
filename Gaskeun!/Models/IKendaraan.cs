@@ -9,7 +9,7 @@ namespace Gaskeun_.Models
     public interface IKendaraan<T>
     {
         bool Insert(T kendaraan);
-        List<T> Read(string jenis);
+        List<T> Read(int idJenis);
         bool Update(T kendaraan, string plat);
         bool Delete(T kendaraan);
     }

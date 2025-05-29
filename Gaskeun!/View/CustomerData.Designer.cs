@@ -43,11 +43,11 @@
             label6 = new Label();
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
+            label1 = new Label();
             Username = new DataGridViewTextBoxColumn();
             Email = new DataGridViewTextBoxColumn();
             NoHp = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
-            label1 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -205,7 +205,6 @@
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.Navy;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
@@ -213,10 +212,10 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Username, Email, NoHp, Status });
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -224,6 +223,7 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(31, 102);
             dataGridView1.Name = "dataGridView1";
@@ -232,6 +232,17 @@
             dataGridView1.Size = new Size(951, 807);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Tahoma", 15F);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(30, 60);
+            label1.Name = "label1";
+            label1.Size = new Size(187, 30);
+            label1.TabIndex = 2;
+            label1.Text = "Data Pelanggan";
             // 
             // Username
             // 
@@ -256,21 +267,10 @@
             // 
             // Status
             // 
-            Status.DataPropertyName = "Status";
+            Status.DataPropertyName = "StatusText";
             Status.HeaderText = "Status";
             Status.MinimumWidth = 6;
             Status.Name = "Status";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 15F);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(30, 60);
-            label1.Name = "label1";
-            label1.Size = new Size(187, 30);
-            label1.TabIndex = 2;
-            label1.Text = "Data Pelanggan";
             // 
             // UsersData
             // 

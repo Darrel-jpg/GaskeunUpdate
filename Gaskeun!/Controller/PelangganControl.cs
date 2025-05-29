@@ -45,10 +45,9 @@ namespace Gaskeun_.Controller
         {
             return pelangganContext.Insert(pelanggan);
         }
-        public List<Pelanggan> GetAllPelanggan()
+        public List<Pelanggan> ReadPelanggan()
         {
-            pelangganContext.Read();
-            return pelangganContext.listPelanggan;
+             return pelangganContext.Read();
         }
         public bool UpdatePelanggan(Pelanggan pelanggan)
         {

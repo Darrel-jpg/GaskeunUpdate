@@ -13,8 +13,7 @@ namespace Gaskeun_.Models
         public bool CekPelanggan(string username, string password)
         {
             bool isSucces = false;
-            string conStr = "Server=localhost;Port=5432;User Id=postgres;Password=postgres;Database=Rental;";
-            using (NpgsqlConnection conn = new NpgsqlConnection(conStr))
+            using (var conn = GetConnection())
             {
                 string sqlPelanggan = "SELECT COUNT(1) FROM akun WHERE username = @username AND password = @password AND role = @role";
                 conn.Open();
@@ -42,17 +41,17 @@ namespace Gaskeun_.Models
             bool isSucces = false;
             using (var conn = GetConnection())
             {
-                string sql = @"INSERT INTO akun(role, username, email, password, no_hp, status)
-                                VALUES(@role, @username, @email, @password, @no_hp, @status);";
+                string sql = @"INSERT INTO akunid_(role, username, email, password, no_hp, status)
+                                VALUES(@id_role, @username, @email, @password, @no_hp, @status);";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.Add(new NpgsqlParameter("@role", "pelanggan"));
+                    cmd.Parameters.Add(new NpgsqlParameter("@id_role", 1));
                     cmd.Parameters.Add(new NpgsqlParameter("@username", pelanggan.Username));
                     cmd.Parameters.Add(new NpgsqlParameter("@email", pelanggan.Email));
                     cmd.Parameters.Add(new NpgsqlParameter("@password", pelanggan.Password));
                     cmd.Parameters.Add(new NpgsqlParameter("@no_hp", pelanggan.NoHp));
-                    cmd.Parameters.Add(new NpgsqlParameter("@status", pelanggan.Status));
+                    cmd.Parameters.Add(new NpgsqlParameter("@status", 1));
 
                     cmd.CommandType = System.Data.CommandType.Text;
                     int jmlDataBaru = cmd.ExecuteNonQuery();
@@ -71,7 +70,7 @@ namespace Gaskeun_.Models
         {
             using(var conn = GetConnection())
             {
-                string query = "SELECT * FROM akun WHERE role = 'pelanggan'";
+                string query = "SELECT * FROM akun WHERE id_role = 2";
                 conn.Open();
                 using(NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
@@ -80,14 +79,12 @@ namespace Gaskeun_.Models
                     listPelanggan.Clear();
                     while (reader.Read())
                     {
-                        Pelanggan dataPelanggan = new Pelanggan
-                        {
-                            Username = reader["username"].ToString(),
-                            Email = reader["email"].ToString(),
-                            NoHp = reader["no_hp"].ToString(),
-                            Password = reader["password"].ToString(),
-                            Status = reader["status"].ToString()
-                        };
+                        Pelanggan dataPelanggan = new Pelanggan();
+                        dataPelanggan.Username = (string)reader["username"];
+                        dataPelanggan.Email = (string)reader["email"];
+                        dataPelanggan.NoHp = (string)reader["no_hp"];
+                        dataPelanggan.Password = (string)reader["password"];
+                        dataPelanggan.Status = (int)reader["status"];
                         listPelanggan.Add(dataPelanggan);
                     }
                 }
@@ -100,7 +97,7 @@ namespace Gaskeun_.Models
             bool isSucces = false;
             using (var conn = GetConnection())
             {
-                string query = @"UPDATE public.akun_pelanggan
+                string query = @"UPDATE akun
                                 SET username = @username, email = @email, no_hp = @no_hp, status = @status
                                 WHERE no_hp = @no_hp";
                 conn.Open();
@@ -138,7 +135,7 @@ namespace Gaskeun_.Models
             bool isSucces = false;
             using (var conn = GetConnection())
             {
-                string query = @"DELETE FROM public.akun_pelanggan WHERE no_hp = @no_hp";
+                string query = @"DELETE FROM akun WHERE no_hp = @no_hp";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {

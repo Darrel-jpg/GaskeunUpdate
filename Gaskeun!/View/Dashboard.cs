@@ -25,8 +25,8 @@ namespace Gaskeun_.View
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            lbJmlMobil.Text = dashboardControl.GetJumlahKendaraan("Mobil").ToString();
-            lbJmlMotor.Text = dashboardControl.GetJumlahKendaraan("Motor").ToString();
+            lbJmlMobil.Text = dashboardControl.GetJumlahKendaraan(2).ToString();
+            lbJmlMotor.Text = dashboardControl.GetJumlahKendaraan(1).ToString();
             lbJmlUser.Text = dashboardControl.GetJumlahPelanggan().ToString();
             lbIncome.Text = dashboardControl.GetTotalPenghasilan().ToString("C", System.Globalization.CultureInfo.GetCultureInfo("id-ID"));
         }

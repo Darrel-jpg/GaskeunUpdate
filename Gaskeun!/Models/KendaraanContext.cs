@@ -15,13 +15,13 @@ namespace Gaskeun_.Models
             bool isSuccess = false;
             using (var conn = GetConnection())
             {
-                string query = @"INSERT INTO kendaraan(plat, jenis_kendaraan, nama_kendaraan, merk, tahun, cc, kapasitas_bensin, gambar, harga_hari, harga_minggu, harga_bulan, status)
-                                VALUES(@plat, @jenis_kendaraan, @nama_kendaraan, @merk, @tahun, @cc, @kapasitas_bensin, @gambar, @harga_hari, @harga_minggu, @harga_bulan, @status);";
+                string query = @"INSERT INTO kendaraan(plat, id_jenis_kendaraan, nama_kendaraan, merk, tahun, cc, kapasitas_bensin, gambar, harga_hari, harga_minggu, harga_bulan, status)
+                                VALUES(@plat, @id_jenis_kendaraan, @nama_kendaraan, @merk, @tahun, @cc, @kapasitas_bensin, @gambar, @harga_hari, @harga_minggu, @harga_bulan, @status);";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
                     cmd.Parameters.Add(new NpgsqlParameter(@"plat", kendaraan.Plat));
-                    cmd.Parameters.Add(new NpgsqlParameter(@"jenis_kendaraan", kendaraan.JenisKendaraan));
+                    cmd.Parameters.Add(new NpgsqlParameter(@"id_jenis_kendaraan", kendaraan.IdJenisKendaraan));
                     cmd.Parameters.Add(new NpgsqlParameter(@"nama_kendaraan", kendaraan.NamaKendaraan));
                     cmd.Parameters.Add(new NpgsqlParameter(@"merk", kendaraan.Merk));
                     cmd.Parameters.Add(new NpgsqlParameter(@"tahun", kendaraan.Tahun));
@@ -45,15 +45,15 @@ namespace Gaskeun_.Models
             return isSuccess;
         }
 
-        public List<Kendaraan> Read(string jenis)
+        public List<Kendaraan> Read(int idJenis)
         {
             using (var conn = GetConnection())
             {
-                string query = @"SELECT * FROM kendaraan WHERE jenis_kendaraan = @jenis_kendaraan";
+                string query = @"SELECT * FROM kendaraan WHERE id_jenis_kendaraan = @id_jenis_kendaraan";
                 conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                 {
-                    cmd.Parameters.Add(new NpgsqlParameter("@jenis_kendaraan", jenis));
+                    cmd.Parameters.Add(new NpgsqlParameter("@id_jenis_kendaraan", idJenis));
                     cmd.CommandText = query;
                     NpgsqlDataReader reader =cmd.ExecuteReader();
                     listKendaraan.Clear();
@@ -71,7 +71,7 @@ namespace Gaskeun_.Models
                         dataKendaraan.HargaHari = (decimal)reader["harga_hari"];
                         dataKendaraan.HargaMinggu = (decimal)reader["harga_minggu"];
                         dataKendaraan.HargaBulan = (decimal)reader["harga_bulan"];
-                        dataKendaraan.Status = (string)reader["status"];
+                        dataKendaraan.Status = (int)reader["status"];
 
                         listKendaraan.Add(dataKendaraan);
                     }

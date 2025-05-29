@@ -1,5 +1,6 @@
 ﻿using Gaskeun_.Controller;
 using Gaskeun_.Models;
+using Gaskeun_.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace Gaskeun_.View
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
             PelangganControl pelangganControl = new PelangganControl();
-            dataGridView1.DataSource = pelangganControl.GetAllPelanggan();
+            dataGridView1.DataSource = pelangganControl.ReadPelanggan();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -41,7 +42,7 @@ namespace Gaskeun_.View
             newPelanggan.Username = tbUsername.Text;
             newPelanggan.Email = tbEmail.Text;
             newPelanggan.NoHp = tbNoHp.Text;
-            newPelanggan.Status = cbStatus.SelectedItem?.ToString();
+            newPelanggan.Status = PelangganHelper.ConvertStatus(cbStatus.SelectedItem?.ToString());
 
             return newPelanggan;
         }
@@ -54,7 +55,7 @@ namespace Gaskeun_.View
                 MessageBox.Show("Data pelanggan berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = pelangganControl.GetAllPelanggan();
+                dataGridView1.DataSource = pelangganControl.ReadPelanggan();
                 ClearForm();
             }
             else
@@ -71,7 +72,7 @@ namespace Gaskeun_.View
             {
                 MessageBox.Show("Data pelanggan berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = pelangganControl.GetAllPelanggan();
+                dataGridView1.DataSource = pelangganControl.ReadPelanggan();
                 ClearForm();
             }
             else

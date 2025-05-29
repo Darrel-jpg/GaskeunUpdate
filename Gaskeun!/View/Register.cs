@@ -115,7 +115,7 @@ namespace Gaskeun_.View
             newPelanggan.Email = tbEmail.Text.Trim();
             newPelanggan.NoHp = tbNoHp.Text.Trim();
             newPelanggan.Password = tbPassword.Text.Trim();
-            newPelanggan.Status = "Aktif";
+            newPelanggan.Status = 1;
 
             return newPelanggan;
         }

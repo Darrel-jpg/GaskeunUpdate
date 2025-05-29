@@ -10,9 +10,9 @@ namespace Gaskeun_.Controller
     public class DashboardControl
     {
         DashboardContext dataDashboard = new DashboardContext();
-        public int GetJumlahKendaraan(string jenis)
+        public int GetJumlahKendaraan(int idJenis)
         {
-            return dataDashboard.GetJumlahKendaraan(jenis);
+            return dataDashboard.GetJumlahKendaraan(idJenis);
         }
         public int GetJumlahPelanggan()
         {

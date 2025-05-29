@@ -65,6 +65,7 @@
             panel2 = new Panel();
             label1 = new Label();
             dataGridView1 = new DataGridView();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             Plat = new DataGridViewTextBoxColumn();
             NamaMotor = new DataGridViewTextBoxColumn();
             Merk = new DataGridViewTextBoxColumn();
@@ -76,7 +77,6 @@
             HargaMinggu = new DataGridViewTextBoxColumn();
             HargaBulan = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             panel3.SuspendLayout();
@@ -537,6 +537,11 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
+            // backgroundWorker1
+            // 
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            // 
             // Plat
             // 
             Plat.DataPropertyName = "Plat";
@@ -609,15 +614,10 @@
             // 
             // Status
             // 
-            Status.DataPropertyName = "Status";
+            Status.DataPropertyName = "StatusText";
             Status.HeaderText = "Status";
             Status.MinimumWidth = 6;
             Status.Name = "Status";
-            // 
-            // backgroundWorker1
-            // 
-            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
-            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
             // 
             // VehicleData
             // 
@@ -678,6 +678,9 @@
         private PictureBox image;
         private Label label12;
         private TextBox tbBensin;
+        private Button btnUpload;
+        private Button btnChoose;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private DataGridViewTextBoxColumn Plat;
         private DataGridViewTextBoxColumn NamaMotor;
         private DataGridViewTextBoxColumn Merk;
@@ -689,8 +692,5 @@
         private DataGridViewTextBoxColumn HargaMinggu;
         private DataGridViewTextBoxColumn HargaBulan;
         private DataGridViewTextBoxColumn Status;
-        private Button btnUpload;
-        private Button btnChoose;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

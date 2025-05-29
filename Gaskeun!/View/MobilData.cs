@@ -1,6 +1,7 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Gaskeun_.Controller;
+using Gaskeun_.Helper;
 using Gaskeun_.Models;
 using System;
 using System.Collections.Generic;
@@ -27,19 +28,20 @@ namespace Gaskeun_.View
         KendaraanControl mobilControl = new KendaraanControl();
         private string platLama;
         private string jenis = "Mobil";
+        private int idJenis= KendaraanHelper.ConvertJenisKendaraan("Mobil");
 
         public MobilData()
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
+            dataGridView1.DataSource = mobilControl.ReadKendaraan(idJenis);
         }
 
         public Kendaraan GetMobil()
         {
             newMobil.Plat = tbPlat.Text;
             newMobil.Merk = tbMerk.Text;
-            newMobil.JenisKendaraan = jenis;
+            newMobil.IdJenisKendaraan = KendaraanHelper.ConvertJenisKendaraan(jenis);
             newMobil.NamaKendaraan = tbNamaMobil.Text;
             newMobil.Tahun = tbTahun.Text;
             newMobil.CC = tbCC.Text;
@@ -48,7 +50,7 @@ namespace Gaskeun_.View
             newMobil.HargaHari = decimal.Parse(tbHari.Text);
             newMobil.HargaMinggu = decimal.Parse(tbMinggu.Text);
             newMobil.HargaBulan = decimal.Parse(tbBulan.Text);
-            newMobil.Status = cbStatus.SelectedItem?.ToString();
+            newMobil.Status = KendaraanHelper.ConvertStatus(cbStatus.SelectedItem?.ToString());
 
             return newMobil;
         }
@@ -89,7 +91,7 @@ namespace Gaskeun_.View
             }
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
+            dataGridView1.DataSource = mobilControl.ReadKendaraan(idJenis);
             ClearForm();
         }
 
@@ -101,13 +103,12 @@ namespace Gaskeun_.View
                 return;
             }
 
-            //Kendaraan newMobil = GetMobil();
             if (mobilControl.UpdateKendaraan(GetMobil(), platLama))
             {
                 MessageBox.Show("Data mobil berhasil diperbarui!");
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
+                dataGridView1.DataSource = mobilControl.ReadKendaraan(idJenis);
                 platLama = null;
 
                 ClearForm();
@@ -120,13 +121,12 @@ namespace Gaskeun_.View
 
         private void btnHapus_Click(object sender, EventArgs e)
         {
-            //Kendaraan mobil = GetMobil();
             if (mobilControl.DeleteKendaraan(GetMobil()))
             {
                 MessageBox.Show("Data mobil berhasil dihapus!");
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = mobilControl.ReadKendaraan(jenis);
+                dataGridView1.DataSource = mobilControl.ReadKendaraan(idJenis);
             }
             else
             {

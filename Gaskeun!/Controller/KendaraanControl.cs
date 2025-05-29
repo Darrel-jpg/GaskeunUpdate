@@ -18,9 +18,9 @@ namespace Gaskeun_.Controller
         {
             return kendaraanContext.Insert(kendaraan);
         }
-        public List<Kendaraan> ReadKendaraan(string jenis)
+        public List<Kendaraan> ReadKendaraan(int idJenis)
         {
-            return kendaraanContext.Read(jenis);
+            return kendaraanContext.Read(idJenis);
         }
         public bool UpdateKendaraan(Kendaraan kendaraan, string platLama)
         {

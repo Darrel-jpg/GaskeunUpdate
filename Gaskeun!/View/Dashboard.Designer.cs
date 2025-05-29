@@ -56,8 +56,8 @@
             Username = new DataGridViewTextBoxColumn();
             JenisKendaraan = new DataGridViewTextBoxColumn();
             NamaKendaraan = new DataGridViewTextBoxColumn();
-            PaketSewa = new DataGridViewTextBoxColumn();
             Durasi = new DataGridViewTextBoxColumn();
+            PaketSewa = new DataGridViewTextBoxColumn();
             Harga = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
@@ -283,7 +283,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeight = 40;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Username, JenisKendaraan, NamaKendaraan, PaketSewa, Durasi, Harga });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Username, JenisKendaraan, NamaKendaraan, Durasi, PaketSewa, Harga });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
@@ -336,19 +336,19 @@
             NamaKendaraan.MinimumWidth = 6;
             NamaKendaraan.Name = "NamaKendaraan";
             // 
-            // PaketSewa
-            // 
-            PaketSewa.DataPropertyName = "PaketSewa";
-            PaketSewa.HeaderText = "Paket Sewa";
-            PaketSewa.MinimumWidth = 6;
-            PaketSewa.Name = "PaketSewa";
-            // 
             // Durasi
             // 
             Durasi.DataPropertyName = "Durasi";
             Durasi.HeaderText = "Durasi";
             Durasi.MinimumWidth = 6;
             Durasi.Name = "Durasi";
+            // 
+            // PaketSewa
+            // 
+            PaketSewa.DataPropertyName = "PaketSewa";
+            PaketSewa.HeaderText = "Paket Sewa";
+            PaketSewa.MinimumWidth = 6;
+            PaketSewa.Name = "PaketSewa";
             // 
             // Harga
             // 
@@ -413,8 +413,8 @@
         private DataGridViewTextBoxColumn Username;
         private DataGridViewTextBoxColumn JenisKendaraan;
         private DataGridViewTextBoxColumn NamaKendaraan;
-        private DataGridViewTextBoxColumn PaketSewa;
         private DataGridViewTextBoxColumn Durasi;
+        private DataGridViewTextBoxColumn PaketSewa;
         private DataGridViewTextBoxColumn Harga;
     }
 }
