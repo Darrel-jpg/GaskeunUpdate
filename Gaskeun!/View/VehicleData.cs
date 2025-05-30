@@ -30,13 +30,13 @@ namespace Gaskeun_.View
         private string platLama;
         private string jenis = "Motor";
         private int idJenis = KendaraanHelper.ConvertJenisKendaraan("Motor");
+        
         public VehicleData()
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = motorControl.ReadKendaraan(idJenis);
         }
-
         public Kendaraan GetMotor()
         {
             newMotor.Plat = tbPlat.Text;

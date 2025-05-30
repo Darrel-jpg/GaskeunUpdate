@@ -34,7 +34,8 @@
             panel1 = new Panel();
             VehicleTimer = new System.Windows.Forms.Timer(components);
             tableLayoutPanel1 = new TableLayoutPanel();
-            pictureBox1 = new PictureBox();
+            panel3 = new Panel();
+            btnDashboard = new Button();
             vehicleContainer = new Panel();
             panel10 = new Panel();
             btnMobil = new Button();
@@ -42,32 +43,38 @@
             btnMotor = new Button();
             panel4 = new Panel();
             btnVehicle = new Button();
-            panel8 = new Panel();
-            btnLogout = new Button();
-            panel3 = new Panel();
-            btnDashboard = new Button();
             panel5 = new Panel();
             btnUsers = new Button();
-            panel6 = new Panel();
-            btnTransaction = new Button();
+            TransaksiContainer = new Panel();
+            panel11 = new Panel();
+            btnTransaksi = new Button();
+            panel12 = new Panel();
+            btnPengembalian = new Button();
+            panel2 = new Panel();
+            btnPeminjaman = new Button();
+            panel8 = new Panel();
+            btnLogout = new Button();
             panel7 = new Panel();
             dashboard1 = new Dashboard();
-            transaksiPelanggan2 = new TransaksiPelanggan();
-            usersData3 = new UsersData();
-            mobilData3 = new MobilData();
-            vehicleData3 = new VehicleData();
+            transaksiPelanggan1 = new TransaksiPelanggan();
+            usersData1 = new UsersData();
+            mobilData1 = new MobilData();
+            vehicleData1 = new VehicleData();
+            TransaksiTimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel3.SuspendLayout();
             vehicleContainer.SuspendLayout();
             panel10.SuspendLayout();
             panel9.SuspendLayout();
             panel4.SuspendLayout();
-            panel8.SuspendLayout();
-            panel3.SuspendLayout();
             panel5.SuspendLayout();
-            panel6.SuspendLayout();
+            TransaksiContainer.SuspendLayout();
+            panel11.SuspendLayout();
+            panel12.SuspendLayout();
+            panel2.SuspendLayout();
+            panel8.SuspendLayout();
             panel7.SuspendLayout();
             SuspendLayout();
             // 
@@ -103,12 +110,11 @@
             tableLayoutPanel1.BackColor = Color.FromArgb(22, 17, 121);
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(pictureBox1, 0, 0);
-            tableLayoutPanel1.Controls.Add(vehicleContainer, 0, 2);
+            tableLayoutPanel1.Controls.Add(panel3, 0, 0);
+            tableLayoutPanel1.Controls.Add(vehicleContainer, 0, 1);
+            tableLayoutPanel1.Controls.Add(panel5, 0, 2);
+            tableLayoutPanel1.Controls.Add(TransaksiContainer, 0, 3);
             tableLayoutPanel1.Controls.Add(panel8, 0, 5);
-            tableLayoutPanel1.Controls.Add(panel3, 0, 1);
-            tableLayoutPanel1.Controls.Add(panel5, 0, 3);
-            tableLayoutPanel1.Controls.Add(panel6, 0, 4);
             tableLayoutPanel1.Dock = DockStyle.Left;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -118,19 +124,39 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(283, 995);
             tableLayoutPanel1.TabIndex = 19;
             // 
-            // pictureBox1
+            // panel3
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(37, 3);
-            pictureBox1.Margin = new Padding(37, 3, 3, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(209, 170);
-            pictureBox1.TabIndex = 15;
-            pictureBox1.TabStop = false;
+            panel3.BackColor = Color.Transparent;
+            panel3.Controls.Add(btnDashboard);
+            panel3.Location = new Point(3, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(277, 88);
+            panel3.TabIndex = 14;
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.BackColor = Color.Transparent;
+            btnDashboard.Cursor = Cursors.Hand;
+            btnDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
+            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
+            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.Location = new Point(-10, -8);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Padding = new Padding(30, 0, 0, 0);
+            btnDashboard.Size = new Size(306, 100);
+            btnDashboard.TabIndex = 16;
+            btnDashboard.Text = "        Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.UseVisualStyleBackColor = false;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // vehicleContainer
             // 
@@ -138,7 +164,7 @@
             vehicleContainer.Controls.Add(panel10);
             vehicleContainer.Controls.Add(panel9);
             vehicleContainer.Controls.Add(panel4);
-            vehicleContainer.Location = new Point(3, 273);
+            vehicleContainer.Location = new Point(3, 97);
             vehicleContainer.MaximumSize = new Size(283, 264);
             vehicleContainer.MinimumSize = new Size(283, 88);
             vehicleContainer.Name = "vehicleContainer";
@@ -233,6 +259,133 @@
             btnVehicle.UseVisualStyleBackColor = false;
             btnVehicle.Click += btnVehicle_Click;
             // 
+            // panel5
+            // 
+            panel5.BackColor = Color.Transparent;
+            panel5.Controls.Add(btnUsers);
+            panel5.Location = new Point(3, 191);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(277, 88);
+            panel5.TabIndex = 18;
+            // 
+            // btnUsers
+            // 
+            btnUsers.BackColor = Color.Transparent;
+            btnUsers.Cursor = Cursors.Hand;
+            btnUsers.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
+            btnUsers.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
+            btnUsers.FlatStyle = FlatStyle.Flat;
+            btnUsers.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnUsers.Image = (Image)resources.GetObject("btnUsers.Image");
+            btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUsers.Location = new Point(-10, -8);
+            btnUsers.Name = "btnUsers";
+            btnUsers.Padding = new Padding(30, 0, 0, 0);
+            btnUsers.Size = new Size(306, 100);
+            btnUsers.TabIndex = 18;
+            btnUsers.Text = "        Customer Data";
+            btnUsers.TextAlign = ContentAlignment.MiddleLeft;
+            btnUsers.UseVisualStyleBackColor = false;
+            btnUsers.Click += btnUsers_Click;
+            // 
+            // TransaksiContainer
+            // 
+            TransaksiContainer.Controls.Add(panel11);
+            TransaksiContainer.Controls.Add(panel12);
+            TransaksiContainer.Controls.Add(panel2);
+            TransaksiContainer.Location = new Point(3, 285);
+            TransaksiContainer.MaximumSize = new Size(283, 264);
+            TransaksiContainer.MinimumSize = new Size(283, 88);
+            TransaksiContainer.Name = "TransaksiContainer";
+            TransaksiContainer.Size = new Size(283, 88);
+            TransaksiContainer.TabIndex = 25;
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.Transparent;
+            panel11.Controls.Add(btnTransaksi);
+            panel11.Location = new Point(0, 4);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(277, 88);
+            panel11.TabIndex = 27;
+            // 
+            // btnTransaksi
+            // 
+            btnTransaksi.BackColor = Color.Transparent;
+            btnTransaksi.Cursor = Cursors.Hand;
+            btnTransaksi.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
+            btnTransaksi.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
+            btnTransaksi.FlatStyle = FlatStyle.Flat;
+            btnTransaksi.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnTransaksi.Image = (Image)resources.GetObject("btnTransaksi.Image");
+            btnTransaksi.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTransaksi.Location = new Point(-10, -4);
+            btnTransaksi.Name = "btnTransaksi";
+            btnTransaksi.Padding = new Padding(30, 0, 0, 0);
+            btnTransaksi.Size = new Size(308, 100);
+            btnTransaksi.TabIndex = 19;
+            btnTransaksi.Text = "        Transaksi";
+            btnTransaksi.TextAlign = ContentAlignment.MiddleLeft;
+            btnTransaksi.UseVisualStyleBackColor = false;
+            btnTransaksi.Click += btnTransaksi_Click;
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.Transparent;
+            panel12.Controls.Add(btnPengembalian);
+            panel12.Location = new Point(0, 176);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(277, 88);
+            panel12.TabIndex = 27;
+            // 
+            // btnPengembalian
+            // 
+            btnPengembalian.BackColor = Color.FromArgb(59, 61, 155);
+            btnPengembalian.Cursor = Cursors.Hand;
+            btnPengembalian.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
+            btnPengembalian.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
+            btnPengembalian.FlatStyle = FlatStyle.Flat;
+            btnPengembalian.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnPengembalian.Image = (Image)resources.GetObject("btnPengembalian.Image");
+            btnPengembalian.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPengembalian.Location = new Point(-10, -4);
+            btnPengembalian.Name = "btnPengembalian";
+            btnPengembalian.Padding = new Padding(30, 0, 0, 0);
+            btnPengembalian.Size = new Size(308, 100);
+            btnPengembalian.TabIndex = 19;
+            btnPengembalian.Text = "        Pengembalian";
+            btnPengembalian.TextAlign = ContentAlignment.MiddleLeft;
+            btnPengembalian.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Transparent;
+            panel2.Controls.Add(btnPeminjaman);
+            panel2.Location = new Point(0, 92);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(277, 88);
+            panel2.TabIndex = 26;
+            // 
+            // btnPeminjaman
+            // 
+            btnPeminjaman.BackColor = Color.FromArgb(59, 61, 155);
+            btnPeminjaman.Cursor = Cursors.Hand;
+            btnPeminjaman.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
+            btnPeminjaman.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
+            btnPeminjaman.FlatStyle = FlatStyle.Flat;
+            btnPeminjaman.Font = new Font("Arial Rounded MT Bold", 14F);
+            btnPeminjaman.Image = (Image)resources.GetObject("btnPeminjaman.Image");
+            btnPeminjaman.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPeminjaman.Location = new Point(-10, -4);
+            btnPeminjaman.Name = "btnPeminjaman";
+            btnPeminjaman.Padding = new Padding(30, 0, 0, 0);
+            btnPeminjaman.Size = new Size(308, 100);
+            btnPeminjaman.TabIndex = 19;
+            btnPeminjaman.Text = "        Peminjaman";
+            btnPeminjaman.TextAlign = ContentAlignment.MiddleLeft;
+            btnPeminjaman.UseVisualStyleBackColor = false;
+            btnPeminjaman.Click += btnPeminjaman_Click;
+            // 
             // panel8
             // 
             panel8.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -263,101 +416,14 @@
             btnLogout.UseVisualStyleBackColor = false;
             btnLogout.Click += btnLogout_Click;
             // 
-            // panel3
-            // 
-            panel3.BackColor = Color.Transparent;
-            panel3.Controls.Add(btnDashboard);
-            panel3.Location = new Point(3, 179);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(277, 88);
-            panel3.TabIndex = 14;
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.BackColor = Color.Transparent;
-            btnDashboard.Cursor = Cursors.Hand;
-            btnDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
-            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
-            btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Arial Rounded MT Bold", 14F);
-            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
-            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(-10, -8);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Padding = new Padding(30, 0, 0, 0);
-            btnDashboard.Size = new Size(306, 100);
-            btnDashboard.TabIndex = 16;
-            btnDashboard.Text = "        Dashboard";
-            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.UseVisualStyleBackColor = false;
-            btnDashboard.Click += btnDashboard_Click;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.Transparent;
-            panel5.Controls.Add(btnUsers);
-            panel5.Location = new Point(3, 367);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(277, 88);
-            panel5.TabIndex = 18;
-            // 
-            // btnUsers
-            // 
-            btnUsers.BackColor = Color.Transparent;
-            btnUsers.Cursor = Cursors.Hand;
-            btnUsers.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
-            btnUsers.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
-            btnUsers.FlatStyle = FlatStyle.Flat;
-            btnUsers.Font = new Font("Arial Rounded MT Bold", 14F);
-            btnUsers.Image = (Image)resources.GetObject("btnUsers.Image");
-            btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsers.Location = new Point(-10, -8);
-            btnUsers.Name = "btnUsers";
-            btnUsers.Padding = new Padding(30, 0, 0, 0);
-            btnUsers.Size = new Size(306, 100);
-            btnUsers.TabIndex = 18;
-            btnUsers.Text = "        Customer Data";
-            btnUsers.TextAlign = ContentAlignment.MiddleLeft;
-            btnUsers.UseVisualStyleBackColor = false;
-            btnUsers.Click += btnUsers_Click;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Transparent;
-            panel6.Controls.Add(btnTransaction);
-            panel6.Location = new Point(3, 461);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(277, 88);
-            panel6.TabIndex = 16;
-            // 
-            // btnTransaction
-            // 
-            btnTransaction.BackColor = Color.Transparent;
-            btnTransaction.Cursor = Cursors.Hand;
-            btnTransaction.FlatAppearance.MouseDownBackColor = Color.FromArgb(38, 31, 179);
-            btnTransaction.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 31, 179);
-            btnTransaction.FlatStyle = FlatStyle.Flat;
-            btnTransaction.Font = new Font("Arial Rounded MT Bold", 14F);
-            btnTransaction.Image = (Image)resources.GetObject("btnTransaction.Image");
-            btnTransaction.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTransaction.Location = new Point(-10, -4);
-            btnTransaction.Name = "btnTransaction";
-            btnTransaction.Padding = new Padding(30, 0, 0, 0);
-            btnTransaction.Size = new Size(308, 100);
-            btnTransaction.TabIndex = 19;
-            btnTransaction.Text = "        Transaction";
-            btnTransaction.TextAlign = ContentAlignment.MiddleLeft;
-            btnTransaction.UseVisualStyleBackColor = false;
-            btnTransaction.Click += btnTransaction_Click;
-            // 
             // panel7
             // 
             panel7.BackColor = SystemColors.ControlLight;
             panel7.Controls.Add(dashboard1);
-            panel7.Controls.Add(transaksiPelanggan2);
-            panel7.Controls.Add(usersData3);
-            panel7.Controls.Add(mobilData3);
-            panel7.Controls.Add(vehicleData3);
+            panel7.Controls.Add(transaksiPelanggan1);
+            panel7.Controls.Add(usersData1);
+            panel7.Controls.Add(mobilData1);
+            panel7.Controls.Add(vehicleData1);
             panel7.Controls.Add(tableLayoutPanel1);
             panel7.Location = new Point(0, 60);
             panel7.Name = "panel7";
@@ -368,51 +434,55 @@
             // 
             dashboard1.BackColor = SystemColors.ControlLight;
             dashboard1.Dock = DockStyle.Fill;
-            dashboard1.ForeColor = Color.Black;
+            dashboard1.ForeColor = SystemColors.Desktop;
             dashboard1.Location = new Point(283, 0);
             dashboard1.Name = "dashboard1";
             dashboard1.Size = new Size(1637, 995);
             dashboard1.TabIndex = 24;
             // 
-            // transaksiPelanggan2
+            // transaksiPelanggan1
             // 
-            transaksiPelanggan2.BackColor = SystemColors.ControlLight;
-            transaksiPelanggan2.Dock = DockStyle.Fill;
-            transaksiPelanggan2.ForeColor = Color.Black;
-            transaksiPelanggan2.Location = new Point(283, 0);
-            transaksiPelanggan2.Name = "transaksiPelanggan2";
-            transaksiPelanggan2.Size = new Size(1637, 995);
-            transaksiPelanggan2.TabIndex = 23;
+            transaksiPelanggan1.Dock = DockStyle.Fill;
+            transaksiPelanggan1.ForeColor = SystemColors.Desktop;
+            transaksiPelanggan1.Location = new Point(283, 0);
+            transaksiPelanggan1.Name = "transaksiPelanggan1";
+            transaksiPelanggan1.Size = new Size(1637, 995);
+            transaksiPelanggan1.TabIndex = 23;
             // 
-            // usersData3
+            // usersData1
             // 
-            usersData3.BackColor = SystemColors.ControlLight;
-            usersData3.Dock = DockStyle.Fill;
-            usersData3.ForeColor = Color.Black;
-            usersData3.Location = new Point(283, 0);
-            usersData3.Name = "usersData3";
-            usersData3.Size = new Size(1637, 995);
-            usersData3.TabIndex = 22;
+            usersData1.BackColor = SystemColors.ControlLight;
+            usersData1.Dock = DockStyle.Fill;
+            usersData1.ForeColor = SystemColors.Desktop;
+            usersData1.Location = new Point(283, 0);
+            usersData1.Name = "usersData1";
+            usersData1.Size = new Size(1637, 995);
+            usersData1.TabIndex = 22;
             // 
-            // mobilData3
+            // mobilData1
             // 
-            mobilData3.BackColor = SystemColors.ControlLight;
-            mobilData3.Dock = DockStyle.Fill;
-            mobilData3.ForeColor = Color.Black;
-            mobilData3.Location = new Point(283, 0);
-            mobilData3.Name = "mobilData3";
-            mobilData3.Size = new Size(1637, 995);
-            mobilData3.TabIndex = 21;
+            mobilData1.BackColor = SystemColors.ControlLight;
+            mobilData1.Dock = DockStyle.Fill;
+            mobilData1.ForeColor = SystemColors.ControlText;
+            mobilData1.Location = new Point(283, 0);
+            mobilData1.Name = "mobilData1";
+            mobilData1.Size = new Size(1637, 995);
+            mobilData1.TabIndex = 21;
             // 
-            // vehicleData3
+            // vehicleData1
             // 
-            vehicleData3.BackColor = SystemColors.ControlLight;
-            vehicleData3.Dock = DockStyle.Fill;
-            vehicleData3.ForeColor = Color.Black;
-            vehicleData3.Location = new Point(283, 0);
-            vehicleData3.Name = "vehicleData3";
-            vehicleData3.Size = new Size(1637, 995);
-            vehicleData3.TabIndex = 20;
+            vehicleData1.BackColor = Color.Transparent;
+            vehicleData1.Dock = DockStyle.Fill;
+            vehicleData1.ForeColor = SystemColors.ControlText;
+            vehicleData1.Location = new Point(283, 0);
+            vehicleData1.Name = "vehicleData1";
+            vehicleData1.Size = new Size(1637, 995);
+            vehicleData1.TabIndex = 20;
+            // 
+            // TransaksiTimer
+            // 
+            TransaksiTimer.Interval = 10;
+            TransaksiTimer.Tick += TransaksiTimer_Tick;
             // 
             // AdminMainForm
             // 
@@ -428,19 +498,20 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AdminMainForm";
             WindowState = FormWindowState.Maximized;
-            Load += AdminMainForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel3.ResumeLayout(false);
             vehicleContainer.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel9.ResumeLayout(false);
             panel4.ResumeLayout(false);
-            panel8.ResumeLayout(false);
-            panel3.ResumeLayout(false);
             panel5.ResumeLayout(false);
-            panel6.ResumeLayout(false);
+            TransaksiContainer.ResumeLayout(false);
+            panel11.ResumeLayout(false);
+            panel12.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel8.ResumeLayout(false);
             panel7.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -451,11 +522,7 @@
         private Panel panel1;
         private System.Windows.Forms.Timer VehicleTimer;
         private VehicleData vehicleData1;
-        private UsersData usersData1;
-        private MobilData mobilData1;
-        private TransaksiPelanggan transaksiPelanggan1;
         private TableLayoutPanel tableLayoutPanel1;
-        private PictureBox pictureBox1;
         private Panel vehicleContainer;
         private Panel panel10;
         private Button btnMobil;
@@ -469,16 +536,18 @@
         private Button btnDashboard;
         private Panel panel5;
         private Button btnUsers;
-        private Panel panel6;
-        private Button btnTransaction;
-        private VehicleData vehicleData2;
-        private MobilData mobilData2;
-        private UsersData usersData2;
         private Panel panel7;
+        private Panel TransaksiContainer;
+        private Panel panel11;
+        private Button btnTransaksi;
+        private Panel panel12;
+        private Button btnPengembalian;
+        private System.Windows.Forms.Timer TransaksiTimer;
+        private MobilData mobilData1;
+        private UsersData usersData1;
+        private TransaksiPelanggan transaksiPelanggan1;
         private Dashboard dashboard1;
-        private TransaksiPelanggan transaksiPelanggan2;
-        private UsersData usersData3;
-        private MobilData mobilData3;
-        private VehicleData vehicleData3;
+        private Panel panel2;
+        private Button btnPeminjaman;
     }
 }

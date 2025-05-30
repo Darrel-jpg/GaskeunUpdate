@@ -13,6 +13,7 @@ namespace Gaskeun_.View
     public partial class AdminMainForm : Form
     {
         private bool vehicleCollapse;
+        private bool transaksiCollapse;
 
         public AdminMainForm()
         {
@@ -45,6 +46,28 @@ namespace Gaskeun_.View
                 }
             }
         }
+        private void TransaksiTimer_Tick(object sender, EventArgs e)
+        {
+            if (transaksiCollapse)
+            {
+                TransaksiContainer.Height += 10;
+                if (TransaksiContainer.Height == TransaksiContainer.MaximumSize.Height)
+                {
+                    transaksiCollapse = false;
+                    TransaksiTimer.Stop();
+                }
+            }
+            else
+            {
+                TransaksiContainer.Height -= 10;
+                if (TransaksiContainer.Height == TransaksiContainer.MinimumSize.Height)
+                {
+                    transaksiCollapse = true;
+                    TransaksiTimer.Stop();
+                }
+            }
+        }
+        
 
         private void btnVehicle_Click(object sender, EventArgs e)
         {
@@ -53,47 +76,47 @@ namespace Gaskeun_.View
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = true;
-            vehicleData3.Visible = false;
-            mobilData3.Visible = false;
-            usersData3.Visible = false;
-            transaksiPelanggan2.Visible = false;
+            vehicleData1.Visible = false;
+            mobilData1.Visible = false;
+            usersData1.Visible = false;
+            transaksiPelanggan1.Visible = false;
+            //transaksi1.Visible = false;
         }
         private void btnMotor_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = false;
-            vehicleData3.Visible = true;
-            mobilData3.Visible = false;
-            usersData3.Visible = false;
-            transaksiPelanggan2.Visible = false;
+            vehicleData1.Visible = true;
+            mobilData1.Visible = false;
+            usersData1.Visible = false;
+            transaksiPelanggan1.Visible = false;
+            //transaksi1.Visible = false;
         }
         private void btnMobil_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = false;
-            vehicleData3.Visible = false;
-            mobilData3.Visible = true;
-            usersData3.Visible = false;
-            transaksiPelanggan2.Visible = false;
+            vehicleData1.Visible = false;
+            mobilData1.Visible = true;
+            usersData1.Visible = false;
+            transaksiPelanggan1.Visible = false;
+            //transaksi1.Visible = false;
         }
         private void btnUsers_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = false;
-            vehicleData3.Visible = false;
-            mobilData3.Visible = false;
-            usersData3.Visible = true;
-            transaksiPelanggan2.Visible = false;
+            vehicleData1.Visible = false;
+            mobilData1.Visible = false;
+            usersData1.Visible = true;
+            transaksiPelanggan1.Visible = false;
+            //transaksi1.Visible = false;
         }
-        private void btnTransaction_Click(object sender, EventArgs e)
+        private void btnTransaksi_Click(object sender, EventArgs e)
         {
             dashboard1.Visible = false;
-            vehicleData3.Visible = false;
-            mobilData3.Visible = false;
-            usersData3.Visible = false;
-            transaksiPelanggan2.Visible = true;
-        }
-        private void AdminMainForm_Load(object sender, EventArgs e)
-        {
-            //this.WindowState = FormWindowState.Maximized;
-            //this.FormBorderStyle = FormBorderStyle.None;
+            vehicleData1.Visible = false;
+            mobilData1.Visible = false;
+            usersData1.Visible = false;
+            transaksiPelanggan1.Visible = true;
+            //transaksi1.Visible = true;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -102,6 +125,20 @@ namespace Gaskeun_.View
             this.Hide();
             loginForm.ShowDialog();
             this.Close();
+        }
+        private void btnPeminjaman_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnRiwayat_Click(object sender, EventArgs e)
+        {
+            //dashboard1.Visible = false;
+            //vehicleData3.Visible = false;
+            //mobilData3.Visible = false;
+            //usersData3.Visible = false;
+            //transaksiPelanggan2.Visible = true;
+            //transaksi1.Visible = false;
         }
     }
 }

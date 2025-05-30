@@ -28,5 +28,23 @@ namespace Gaskeun_.Helper
                 default: return -1; // Tidak Diketahui
             }
         }
+        public static string ConvertStatusTransaksi(int status)
+        {
+            switch (status)
+            {
+                case 1: return "Berjalan"; // Berjalan
+                case 0: return "Selesai"; // Selesai
+                default: return "Tidak Diketahui"; // Tidak Diketahui
+            }
+        }
+        public static int ConvertStatusTransaksi(string status)
+        {
+            switch (status.ToLower())
+            {
+                case "berjalan": return 1; // Berjalan
+                case "selesai": return 0; // Selesai
+                default: return -1; // Tidak Diketahui
+            }
+        }
     }
 }
